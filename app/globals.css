@@ -1,20 +1,21 @@
 :root {
-  --bg: #0c1117;
-  --bg-soft: #111922;
-  --panel: rgba(17, 25, 34, 0.88);
-  --panel-strong: #151d27;
-  --panel-elevated: rgba(22, 31, 42, 0.96);
+  --bg: #0d1020;
+  --bg-soft: #151a2e;
+  --panel: rgba(18, 22, 40, 0.9);
+  --panel-strong: #1a1f38;
+  --panel-elevated: rgba(24, 29, 50, 0.97);
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
-  --text: #f4f7fb;
-  --muted: #95a3b4;
-  --accent: #b7ff3c;
-  --accent-soft: rgba(183, 255, 60, 0.14);
-  --blue: #45a4ff;
-  --blue-soft: rgba(69, 164, 255, 0.16);
-  --rose: #ff7665;
-  --rose-soft: rgba(255, 118, 101, 0.16);
-  --gold: #ffd166;
+  --text: #f7f7ff;
+  --muted: #b2b8d3;
+  --accent: #ff5e7a;
+  --accent-soft: rgba(255, 94, 122, 0.15);
+  --accent-strong: #ff8a5b;
+  --blue: #35d7ff;
+  --blue-soft: rgba(53, 215, 255, 0.16);
+  --rose: #ff6a8f;
+  --rose-soft: rgba(255, 106, 143, 0.16);
+  --gold: #ffd84d;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
   --radius-xl: 30px;
   --radius-lg: 22px;
@@ -34,11 +35,13 @@ body {
   min-height: 100vh;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(69, 164, 255, 0.18), transparent 24%),
-    radial-gradient(circle at top right, rgba(183, 255, 60, 0.12), transparent 20%),
-    linear-gradient(180deg, #091018 0%, #0c1117 32%, #101722 100%);
+    radial-gradient(circle at top left, rgba(255, 94, 122, 0.24), transparent 24%),
+    radial-gradient(circle at top right, rgba(53, 215, 255, 0.16), transparent 20%),
+    radial-gradient(circle at bottom right, rgba(255, 216, 77, 0.09), transparent 22%),
+    linear-gradient(180deg, #090d1d 0%, #0d1020 34%, #13172a 100%);
   font-family:
     "Aptos",
+    "Aptos Narrow",
     "Avenir Next",
     "Segoe UI",
     "Helvetica Neue",
@@ -142,6 +145,81 @@ button {
   border-radius: 26px;
 }
 
+.zoba-lockup {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.zoba-emblem {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 94, 122, 0.34);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 94, 122, 0.22), rgba(53, 215, 255, 0.1)),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.zoba-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  width: 22px;
+  height: 22px;
+}
+
+.zoba-grid i {
+  display: block;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.zoba-grid i:nth-child(1) {
+  grid-column: 1 / span 2;
+  background: var(--accent);
+}
+
+.zoba-grid i:nth-child(2) {
+  grid-column: 3;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.zoba-grid i:nth-child(3) {
+  grid-column: 2 / span 2;
+  background: var(--blue);
+}
+
+.zoba-type {
+  display: grid;
+  gap: 2px;
+}
+
+.zoba-type strong {
+  font-family:
+    "Aptos Display",
+    "Avenir Next Condensed",
+    "Franklin Gothic Demi Cond",
+    sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  text-transform: lowercase;
+}
+
+.zoba-type span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .hero-card h2 {
   margin: 10px 0;
   max-width: 14ch;
@@ -171,7 +249,7 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   background:
-    linear-gradient(180deg, rgba(69, 164, 255, 0.14), rgba(183, 255, 60, 0.06)),
+    linear-gradient(180deg, rgba(255, 94, 122, 0.18), rgba(53, 215, 255, 0.08)),
     var(--panel);
 }
 
@@ -245,7 +323,7 @@ button {
 
 .preset-tile:hover {
   transform: translateY(-2px);
-  border-color: rgba(183, 255, 60, 0.24);
+  border-color: rgba(255, 94, 122, 0.3);
   background: var(--panel-elevated);
 }
 
@@ -325,7 +403,7 @@ button {
 
 .choice-pill.is-active,
 .quick-income.is-active {
-  border-color: rgba(183, 255, 60, 0.5);
+  border-color: rgba(255, 94, 122, 0.5);
   background: var(--accent-soft);
   color: var(--text);
 }
@@ -379,8 +457,8 @@ button {
 }
 
 .select-menu.is-open .select-trigger {
-  border-color: rgba(183, 255, 60, 0.42);
-  background: rgba(183, 255, 60, 0.08);
+  border-color: rgba(255, 94, 122, 0.42);
+  background: rgba(255, 94, 122, 0.08);
 }
 
 .select-chevron {
@@ -398,7 +476,7 @@ button {
   border: 1px solid var(--line-strong);
   border-radius: 20px;
   background:
-    linear-gradient(180deg, rgba(69, 164, 255, 0.08), rgba(183, 255, 60, 0.04)),
+    linear-gradient(180deg, rgba(255, 94, 122, 0.08), rgba(53, 215, 255, 0.05)),
     rgba(15, 22, 31, 0.98);
   box-shadow: var(--shadow);
 }
@@ -426,8 +504,8 @@ button {
 
 .select-option:hover,
 .select-option.is-active {
-  border-color: rgba(183, 255, 60, 0.34);
-  background: rgba(183, 255, 60, 0.1);
+  border-color: rgba(255, 94, 122, 0.34);
+  background: rgba(255, 94, 122, 0.1);
 }
 
 .select-option:active {
@@ -452,9 +530,9 @@ button {
   justify-content: center;
   min-height: 132px;
   padding: 16px;
-  border: 1px solid rgba(183, 255, 60, 0.18);
+  border: 1px solid rgba(255, 94, 122, 0.2);
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(183, 255, 60, 0.08), rgba(69, 164, 255, 0.06));
+  background: linear-gradient(180deg, rgba(255, 94, 122, 0.1), rgba(53, 215, 255, 0.06));
   color: var(--text);
   text-align: left;
   cursor: pointer;
@@ -580,7 +658,7 @@ button {
 }
 
 .switch-ui.is-on {
-  background: rgba(183, 255, 60, 0.28);
+  background: rgba(255, 94, 122, 0.28);
 }
 
 .switch-ui.is-on span {
@@ -659,12 +737,12 @@ button {
 
 .affordability-chip.is-workable {
   background: var(--blue-soft);
-  color: #b9deff;
+  color: #ffd7bf;
 }
 
 .affordability-chip.is-comfortable {
   background: rgba(255, 209, 102, 0.16);
-  color: #ffe4a0;
+  color: #ffd79b;
 }
 
 .affordability-chip.is-stretched {
@@ -772,7 +850,7 @@ button {
   width: 100%;
   padding: 16px 18px;
   background:
-    linear-gradient(135deg, rgba(183, 255, 60, 0.12), rgba(69, 164, 255, 0.12)),
+    linear-gradient(135deg, rgba(255, 94, 122, 0.16), rgba(53, 215, 255, 0.08)),
     var(--panel-elevated);
   color: var(--text);
   text-align: left;
@@ -980,7 +1058,7 @@ button {
 }
 
 .modal-apply {
-  background: linear-gradient(135deg, var(--accent-soft), rgba(69, 164, 255, 0.18));
+  background: linear-gradient(135deg, var(--accent-soft), rgba(53, 215, 255, 0.12));
 }
 
 .trust-footer {

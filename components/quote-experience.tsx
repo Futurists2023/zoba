@@ -426,6 +426,24 @@ function BudgetSlider({
   );
 }
 
+function ZobaWordmark() {
+  return (
+    <div className="zoba-lockup" aria-label="zoba">
+      <span className="zoba-emblem" aria-hidden="true">
+        <span className="zoba-grid">
+          <i />
+          <i />
+          <i />
+        </span>
+      </span>
+      <div className="zoba-type">
+        <strong>zoba</strong>
+        <span>Cape Town cost of living</span>
+      </div>
+    </div>
+  );
+}
+
 function SelectMenu<T extends string>({
   label,
   value,
@@ -666,7 +684,8 @@ export function QuoteExperience() {
     <main ref={plannerRef} className="metro-shell">
       <section className="hero-stage">
         <div className="hero-card">
-          <p className="hero-kicker">zoba | Cape Town cost of living</p>
+          <ZobaWordmark />
+          <p className="hero-kicker">Know the cost before the move.</p>
           <h2>See what it really costs to live in Cape Town.</h2>
           <p>
             Model rent, commute, groceries, fibre, and backup power in one fast
