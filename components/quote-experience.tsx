@@ -214,6 +214,10 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function formatCount(value: number, singular: string, plural = `${singular}s`) {
+  return `${value} ${value === 1 ? singular : plural}`;
+}
+
 function getFibreTierForBudget(
   amount: number,
 ): NonNullable<QuoteRequest["fibreTier"]> {
@@ -261,6 +265,24 @@ function summarizeChildSetup(setup: ChildSetup) {
   return summary.join(" | ");
 }
 
+function summarizeHousehold(request: QuoteRequest) {
+  const children = request.children ?? 0;
+
+  return `${formatCount(request.adults, "adult")}, ${
+    children > 0 ? formatCount(children, "child", "children") : "no children"
+  }`;
+}
+
+function summarizeHomeSetup(request: QuoteRequest) {
+  const parkingSpaces = request.parkingSpaces ?? 0;
+
+  return `${formatCount(request.bedrooms, "bedroom")} • ${
+    parkingSpaces > 0
+      ? formatCount(parkingSpaces, "parking bay", "parking bays")
+      : "no parking"
+  }`;
+}
+
 function mapChildSetupToRequest(
   setup: ChildSetup,
 ): Pick<QuoteRequest, "children" | "schoolType" | "childcare"> {
@@ -296,19 +318,32 @@ function Stepper({
   max: number;
   onChange: (next: number) => void;
 }) {
+  const canDecrease = value > min;
+  const canIncrease = value < max;
+
   return (
     <div className="stepper-card">
-      <span className="mini-label">{label}</span>
+      <div className="stepper-meta">
+        <span className="mini-label">{label}</span>
+        <small>{min === 0 ? "Optional" : `Min ${min}`}</small>
+      </div>
       <div className="stepper-shell">
         <button
           type="button"
+          aria-label={`Decrease ${label.toLowerCase()}`}
+          disabled={!canDecrease}
           onClick={() => onChange(clamp(value - 1, min, max))}
         >
           -
         </button>
-        <strong>{value}</strong>
+        <div className="stepper-value">
+          <strong>{value}</strong>
+          <span>{label}</span>
+        </div>
         <button
           type="button"
+          aria-label={`Increase ${label.toLowerCase()}`}
+          disabled={!canIncrease}
           onClick={() => onChange(clamp(value + 1, min, max))}
         >
           +
@@ -770,7 +805,7 @@ export function QuoteExperience() {
                 <h3>{selectedLifestyle.label}</h3>
               </div>
             </div>
-            <p className="card-copy">{selectedLifestyle.note}</p>
+
             <SelectMenu
               label="Choose a lifestyle"
               value={request.lifestyleTier}
@@ -794,40 +829,69 @@ export function QuoteExperience() {
             <div className="card-header">
               <div>
                 <p className="mini-label">Household</p>
-                <h3>Build your setup</h3>
+                <h3>{summarizeHousehold(request)}</h3>
               </div>
             </div>
-            <div className="stepper-grid">
-              <Stepper
-                label="Adults"
-                value={request.adults}
-                min={1}
-                max={6}
-                onChange={(value) => updateRequest("adults", value)}
-              />
-              <button
-                type="button"
-                className="child-trigger-card"
-                onClick={openChildModal}
-              >
-                <span className="mini-label">Children</span>
-                <strong>{request.children ?? 0}</strong>
-                <p>{summarizeChildSetup(childSetup)}</p>
-              </button>
-              <Stepper
-                label="Bedrooms"
-                value={request.bedrooms}
-                min={1}
-                max={6}
-                onChange={(value) => updateRequest("bedrooms", value)}
-              />
-              <Stepper
-                label="Parking"
-                value={request.parkingSpaces ?? 0}
-                min={0}
-                max={4}
-                onChange={(value) => updateRequest("parkingSpaces", value)}
-              />
+            <p className="card-copy household-summary">
+              {summarizeHomeSetup(request)}
+            </p>
+            <div className="household-layout">
+              <div className="household-group">
+                <div className="household-group-head">
+                  <strong>People</strong>
+                  <span>Who are we budgeting for?</span>
+                </div>
+                <div className="household-grid">
+                  <Stepper
+                    label="Adults"
+                    value={request.adults}
+                    min={1}
+                    max={6}
+                    onChange={(value) => updateRequest("adults", value)}
+                  />
+                  <button
+                    type="button"
+                    className="child-trigger-card"
+                    onClick={openChildModal}
+                  >
+                    <div className="child-trigger-top">
+                      <span className="mini-label">Children</span>
+                      <span className="child-trigger-action">
+                        {request.children ? "Edit details" : "Add details"}
+                      </span>
+                    </div>
+                    <strong>{request.children ?? 0}</strong>
+                    <p>
+                      {request.children
+                        ? summarizeChildSetup(childSetup)
+                        : "Add daycare or school costs so your estimate reflects family needs."}
+                    </p>
+                  </button>
+                </div>
+              </div>
+
+              <div className="household-group">
+                <div className="household-group-head">
+                  <strong>Home</strong>
+                  <span>Size the space you need</span>
+                </div>
+                <div className="household-grid">
+                  <Stepper
+                    label="Bedrooms"
+                    value={request.bedrooms}
+                    min={1}
+                    max={6}
+                    onChange={(value) => updateRequest("bedrooms", value)}
+                  />
+                  <Stepper
+                    label="Parking"
+                    value={request.parkingSpaces ?? 0}
+                    min={0}
+                    max={4}
+                    onChange={(value) => updateRequest("parkingSpaces", value)}
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
@@ -1119,9 +1183,9 @@ export function QuoteExperience() {
             <p className="mini-label">About us</p>
             <h3>zoba helps people plan real moves</h3>
             <p>
-              zoba is a mobile-first cost-of-living planner built to help
-              people estimate location-sensitive living costs in Cape Town
-              before they rent, relocate, or change neighborhoods.
+              zoba is a mobile-first cost-of-living planner built to help people
+              estimate location-sensitive living costs in Cape Town before they
+              rent, relocate, or change neighborhoods.
             </p>
           </section>
 

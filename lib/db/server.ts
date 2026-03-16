@@ -2,6 +2,20 @@ import { Pool } from "pg";
 
 let pool: Pool | null = null;
 
+function isPlaceholderConnectionString(connectionString: string) {
+  return (
+    connectionString.includes("[YOUR-PASSWORD]") ||
+    connectionString.includes("your-url-encoded-password") ||
+    connectionString.includes("your-project-ref")
+  );
+}
+
+export function hasUsableSupabaseDbUrl() {
+  const connectionString = process.env.SUPABASE_DB_URL;
+
+  return Boolean(connectionString && !isPlaceholderConnectionString(connectionString));
+}
+
 export function getServerDbPool() {
   const connectionString = process.env.SUPABASE_DB_URL;
 
@@ -9,7 +23,7 @@ export function getServerDbPool() {
     throw new Error("Missing required environment variable: SUPABASE_DB_URL");
   }
 
-  if (connectionString.includes("[YOUR-PASSWORD]")) {
+  if (isPlaceholderConnectionString(connectionString)) {
     throw new Error("SUPABASE_DB_URL still contains the placeholder password.");
   }
 
