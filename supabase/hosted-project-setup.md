@@ -9,6 +9,9 @@ Publishable key:
 Direct connection string template:
 `postgresql://postgres:[YOUR-PASSWORD]@db.yesqzahheivcosyzqyyx.supabase.co:5432/postgres`
 
+Preferred app/runtime connection string template:
+`postgresql://postgres.yesqzahheivcosyzqyyx:[URL-ENCODED-PASSWORD]@aws-1-eu-west-1.pooler.supabase.com:6543/postgres`
+
 Still required before running the hosted migration:
 - the actual database password for `postgres`
 

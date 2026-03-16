@@ -9,6 +9,10 @@ export function getServerDbPool() {
     throw new Error("Missing required environment variable: SUPABASE_DB_URL");
   }
 
+  if (connectionString.includes("[YOUR-PASSWORD]")) {
+    throw new Error("SUPABASE_DB_URL still contains the placeholder password.");
+  }
+
   if (!pool) {
     pool = new Pool({
       connectionString,
@@ -16,6 +20,8 @@ export function getServerDbPool() {
         rejectUnauthorized: false,
       },
       max: 5,
+      connectionTimeoutMillis: 5000,
+      idleTimeoutMillis: 10000,
     });
   }
 
