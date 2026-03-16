@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="zobaGradient" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5E7A" />
+      <stop offset="1" stop-color="#35D7FF" />
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="16" fill="#171C31" />
+  <rect
+    x="6.75"
+    y="6.75"
+    width="50.5"
+    height="50.5"
+    rx="15.25"
+    stroke="url(#zobaGradient)"
+    stroke-opacity="0.7"
+    stroke-width="1.5"
+  />
+  <circle cx="24" cy="25" r="7" fill="#FF5E7A" />
+  <circle cx="40" cy="25" r="7" fill="#2A304A" />
+  <circle cx="32" cy="39" r="7" fill="#35D7FF" />
+</svg>
