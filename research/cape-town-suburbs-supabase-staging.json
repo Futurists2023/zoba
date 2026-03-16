@@ -1,0 +1,1350 @@
+{
+  "generated_at": "2026-03-16",
+  "research_batch": "cape-town-suburbs-research-2026-03-16",
+  "suburbs": [
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "Claremont",
+      "slug": "claremont",
+      "city": "Cape Town",
+      "region_group": "southern_suburbs",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Claremont as a vibrant Southern Suburbs neighbourhood with diverse communities and plenty to see and do.",
+        "data_gaps": [
+          "No suburb-level transport distance pack has been compiled yet.",
+          "Residential samples are direct listings, not normalized rent bands."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "name": "Observatory",
+      "slug": "observatory",
+      "city": "Cape Town",
+      "region_group": "city_bowl_edge",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Observatory as a creative, bohemian neighbourhood with thrift stores, cafes, bars, and a laid-back local identity.",
+        "data_gaps": [
+          "Transport values still need direct map-based verification.",
+          "Some Observatory listings are house-share stock and should be excluded from future rent-band modeling."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "name": "Table View",
+      "slug": "table-view",
+      "city": "Cape Town",
+      "region_group": "western_seaboard",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism says Table View is named after its views of Table Mountain and positions it as a suburban neighbourhood close to the western seaboard beach lifestyle.",
+        "data_gaps": [
+          "No verified suburb-specific commute set has been added yet.",
+          "Beachfront and inland Table View stock should be split later because pricing differs."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "name": "Bellville",
+      "slug": "bellville",
+      "city": "Cape Town",
+      "region_group": "northern_suburbs",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Bellville as a residential, industrial, and commercial area in Cape Town's Northern Suburbs with access to shopping and family attractions.",
+        "data_gaps": [
+          "Bellville results span multiple sub-areas; later migration should normalize by sub-area where needed.",
+          "Residential samples here are broad Bellville market observations, not a single micro-node."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "name": "Rondebosch",
+      "slug": "rondebosch",
+      "city": "Cape Town",
+      "region_group": "southern_suburbs",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "UCT states that its Groote Schuur Campus is situated in the suburb of Rondebosch, giving the area a strong education anchor.",
+        "data_gaps": [
+          "Need a cleaner full-category rental count capture.",
+          "Student-oriented room-share stock near UCT needs separate treatment from standard household rentals."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "name": "Sea Point",
+      "slug": "sea-point",
+      "city": "Cape Town",
+      "region_group": "atlantic_seaboard",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism positions Sea Point as an Atlantic Seaboard neighbourhood between Signal Hill and the ocean, anchored by the promenade and a strong apartment market.",
+        "data_gaps": [
+          "A number of Sea Point listings are furnished or short-term biased and should be flagged during migration.",
+          "Future migration should split studio and one-bed apartment stock cleanly."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "name": "Woodstock",
+      "slug": "woodstock",
+      "city": "Cape Town",
+      "region_group": "city_bowl_edge",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Woodstock as one of Cape Town's oldest suburbs and a creative hub with food, design, and street art.",
+        "data_gaps": [
+          "House-share and student-leaning Woodstock stock needs separate treatment from standard household rentals.",
+          "The Woodstock search result set needs one cleaner category scrape in the migration phase."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "name": "Century City",
+      "slug": "century-city",
+      "city": "Cape Town",
+      "region_group": "northern_gateway",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "The official Century City precinct page describes the area as a 250-hectare mixed-use business and lifestyle precinct halfway between the Cape Town CBD and the northern suburbs.",
+        "data_gaps": [
+          "Century City includes a high share of furnished and short-stay stock, so long-term migration rules need extra filtering.",
+          "Residential stock should later be separated by estate or development where possible."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "name": "Durbanville",
+      "slug": "durbanville",
+      "city": "Cape Town",
+      "region_group": "northern_suburbs",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Durbanville as a Cape Town winelands town with outdoor recreation and access to nearby wineries.",
+        "data_gaps": [
+          "Durbanville samples span multiple sub-areas such as Amanda Glen, Vierlanden, and Durbanville Central.",
+          "Migration should likely treat Durbanville micro-areas separately if suburb-level precision is required."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "name": "Newlands",
+      "slug": "newlands",
+      "city": "Cape Town",
+      "region_group": "southern_suburbs",
+      "is_active": true,
+      "metadata": {
+        "country": "South Africa",
+        "summary": "Cape Town Tourism describes Newlands as a leafy Southern Suburbs neighbourhood known for nature, sport, and mountain access.",
+        "data_gaps": [
+          "Newlands stock includes premium furnished and short-lease options that should be tagged during migration.",
+          "A full category count for Newlands residential listings still needs one clean capture."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    }
+  ],
+  "research_sources": [
+    {
+      "id": "89b5387c-c9c2-2158-1ccb-e98862b48817",
+      "title": "Century City Precinct | Canal Walk Shopping",
+      "url": "https://canalwalk.co.za/page/Century-City-Precinct",
+      "publisher": "Canal Walk",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8590aab3-6abf-3f98-fbaa-0a2a4c95548c",
+      "title": "Cavendish Square",
+      "url": "https://cavendish.co.za/",
+      "publisher": "Cavendish Square",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "bcaa351e-bd36-4ee8-c180-d75194b57c73",
+      "title": "Home | Durbanville Wine Valley",
+      "url": "https://durbanvillewine.co.za/",
+      "publisher": "Durbanville Wine Valley",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "595f5aa0-7ff7-ec8d-c53d-6bc588f636f2",
+      "title": "The Old Biscuit Mill - Cape Town Shopping, Dining & Entertainment",
+      "url": "https://theoldbiscuitmill.co.za/",
+      "publisher": "The Old Biscuit Mill",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "552f3246-6c40-fbfe-cd92-b3074776671f",
+      "title": "Bellville - Cape Town Tourism",
+      "url": "https://www.capetown.travel/neighbourhood/bellville/",
+      "publisher": "Cape Town Tourism",
+      "source_type": "publisher",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8b323179-ba15-d277-8da1-2b6ca1cd0e3a",
+      "title": "Sea Point - Cape Town Tourism",
+      "url": "https://www.capetown.travel/neighbourhood/sea-point/",
+      "publisher": "Cape Town Tourism",
+      "source_type": "publisher",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "87fb8e74-b456-007a-ac5d-fbb671022612",
+      "title": "Table View - Cape Town Tourism",
+      "url": "https://www.capetown.travel/neighbourhoods/table-view/",
+      "publisher": "Cape Town Tourism",
+      "source_type": "publisher",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "f2cd9478-bc18-0842-d8ad-8ddaf82bed9a",
+      "title": "Groote Schuur Hospital | World Famous and World Class",
+      "url": "https://www.gsh.co.za/",
+      "publisher": "Groote Schuur Hospital",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "ccdec93c-5833-e75f-eae6-ecd2ff0e2e4e",
+      "title": "Houses to rent in Durbanville : Durbanville Property : Property24.com",
+      "url": "https://www.property24.com/houses-to-rent/durbanville/western-cape/439",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "9313fa3f-e2b6-7d1b-2c53-f7260980d8e4",
+      "title": "1 Bedroom Townhouse to rent in Amanda Glen - 1 Patou Avenue - P24-116100751",
+      "url": "https://www.property24.com/to-rent/amanda-glen/durbanville/western-cape/9515/116100751",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "52645dde-10f2-4304-ef66-cacd7e30663b",
+      "title": "1 Bedroom Apartment / flat to rent in Bellville Central - P24-115961066",
+      "url": "https://www.property24.com/to-rent/bellville-central/bellville/western-cape/9426/115961066",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "02523971-ef95-0c2c-4cb6-05c9bf607214",
+      "title": "Century City Property : Property and houses to rent in Century City : Property24.com",
+      "url": "https://www.property24.com/to-rent/century-city/milnerton/western-cape/8027",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "f0057c96-90b1-be43-160f-7cef75ddf29e",
+      "title": "1 Bedroom Apartment / flat to rent in Century City - P24-115608137",
+      "url": "https://www.property24.com/to-rent/century-city/milnerton/western-cape/8027/115608137",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "684fac83-8978-9c85-74fc-f74500667de9",
+      "title": "Claremont, Cape Town Property : Property and houses to rent in Claremont, Cape Town : Property24.com",
+      "url": "https://www.property24.com/to-rent/claremont/cape-town/western-cape/11741",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "45c8d127-2945-7144-7e29-1ebb60ce6cfe",
+      "title": "4 Bedroom Townhouse to rent in Claremont - 5 Midwood Ave - P24-115448770",
+      "url": "https://www.property24.com/to-rent/claremont/cape-town/western-cape/11741/115448770",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "451fd9d5-6974-7a88-a078-a068d494b353",
+      "title": "3 Bedroom House to rent in Claremont - P24-116107540",
+      "url": "https://www.property24.com/to-rent/claremont/cape-town/western-cape/11741/116107540",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "ec483c61-9872-7a36-49f4-abaa2c72aed3",
+      "title": "Newlands, Cape Town Property : Property and houses to rent in Newlands, Cape Town : Property24.com",
+      "url": "https://www.property24.com/to-rent/newlands/cape-town/western-cape/8679",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "cf5c19cb-7601-00f7-ddca-4bf26b63eb6f",
+      "title": "3 Bedroom House to rent in Newlands - 19 Van Reenen Close - P24-115215867",
+      "url": "https://www.property24.com/to-rent/newlands/cape-town/western-cape/8679/115215867",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "0261797f-2db4-be3d-a133-bcd08709af61",
+      "title": "2 Bedroom House to rent in Newlands - P24-115518459",
+      "url": "https://www.property24.com/to-rent/newlands/cape-town/western-cape/8679/115518459",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "73cebd66-4419-0f48-0895-05b4a7937d6b",
+      "title": "Observatory, Cape Town Property : Property and houses to rent in Observatory, Cape Town : Property24.com",
+      "url": "https://www.property24.com/to-rent/observatory/cape-town/western-cape/10157",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "dfc28a12-4046-0f4d-ec23-a8243e0fc77e",
+      "title": "2 Bedroom House to rent in Observatory - P24-116195515",
+      "url": "https://www.property24.com/to-rent/observatory/cape-town/western-cape/10157/116195515",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "5d48f714-fd4b-43a1-5453-3e822a9dbd88",
+      "title": "2 Bedroom Apartment / flat to rent in Observatory - P24-116320282",
+      "url": "https://www.property24.com/to-rent/observatory/cape-town/western-cape/10157/116320282",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "3adaf440-f31b-070d-1e76-169f2ab0013a",
+      "title": "3 Bedroom Townhouse to Rent in Oude Westhof - 33,35 & 37 Blanc De Noir, 1 Bukettraube Close - P24-114407425",
+      "url": "https://www.property24.com/to-rent/oude-westhof/bellville/western-cape/9498/114407425",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "aadbdd25-a1d4-b1b2-874e-b6ec4e66abcd",
+      "title": "Rondebosch Property : Property and houses to rent in Rondebosch : Property24.com",
+      "url": "https://www.property24.com/to-rent/rondebosch/cape-town/western-cape/8682",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "0fe67089-4b58-99bd-4000-94ecc4312b89",
+      "title": "4 Bedroom House to rent in Rondebosch - P24-111716359",
+      "url": "https://www.property24.com/to-rent/rondebosch/cape-town/western-cape/8682/111716359",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "84d04ae4-def1-554e-4566-13d4e372d258",
+      "title": "3 Bedroom Townhouse to rent in Rondebosch - 54 Park Road - P24-116256882",
+      "url": "https://www.property24.com/to-rent/rondebosch/cape-town/western-cape/8682/116256882",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "b9ce76e9-a196-f14a-11a4-660957ba7262",
+      "title": "Sea Point Property : Property and houses to rent in Sea Point : Property24.com",
+      "url": "https://www.property24.com/to-rent/sea-point/cape-town/western-cape/11021",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "80c0b2dd-fca4-a22d-b0f6-f5bf0de70597",
+      "title": "Table View Property : Property and houses to rent in Table View : Property24.com",
+      "url": "https://www.property24.com/to-rent/table-view/blouberg/western-cape/11589",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "417a7b07-db6d-886a-d71b-4260a0bdf9b7",
+      "title": "Table View Property : Property and houses to rent in Table View : Property24.com - Page 3",
+      "url": "https://www.property24.com/to-rent/table-view/blouberg/western-cape/11589/p3",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "e9e7cf77-ab4e-6ea4-79df-f056bca8576b",
+      "title": "Table View Property : Property and houses to rent in Table View : Property24.com - Page 5",
+      "url": "https://www.property24.com/to-rent/table-view/blouberg/western-cape/11589/p5",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "b72d7aba-dc51-2c9d-a68a-e8030011a8da",
+      "title": "2 Bedroom House to rent in Woodstock - 11 Melbourne Road - P24-110134910",
+      "url": "https://www.property24.com/to-rent/woodstock/cape-town/western-cape/10164/110134910",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "16f80f66-17d6-4d7b-ca70-797f216d6d2d",
+      "title": "2 Bedroom Apartment / flat to rent in Woodstock - 1 Upper East Side, 31 Brickfield - P24-115835774",
+      "url": "https://www.property24.com/to-rent/woodstock/cape-town/western-cape/10164/115835774",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "499568ab-931c-0e2e-8bae-83ea43d08d13",
+      "title": "1 Bedroom Apartment / flat to rent in Woodstock - 4 Bromwell Street - P24-116124832",
+      "url": "https://www.property24.com/to-rent/woodstock/cape-town/western-cape/10164/116124832",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "208e6c88-2e81-cec5-416d-55cbd74274ca",
+      "title": "Townhouses to rent in Bellville : Bellville Property : Property24.com",
+      "url": "https://www.property24.com/townhouses-to-rent/bellville/western-cape/441",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "854ec721-aae8-43ba-9d26-17e3152eecfb",
+      "title": "Century City Property : Townhouses to rent in Century City : Property24.com",
+      "url": "https://www.property24.com/townhouses-to-rent/century-city/milnerton/western-cape/8027",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "6d86f913-63b0-404f-26c9-75a7ab5a0977",
+      "title": "Townhouses to rent in Durbanville : Durbanville Property : Property24.com",
+      "url": "https://www.property24.com/townhouses-to-rent/durbanville/western-cape/439",
+      "publisher": "Property24",
+      "source_type": "property_portal",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "e6c0a60d-2007-1549-64c2-1bac3015a3ce",
+      "title": "Contact - SANBI",
+      "url": "https://www.sanbi.org/contact/",
+      "publisher": "SANBI",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "d0329041-91b0-fd88-d07e-a409947236f0",
+      "title": "Directions to UCT | University of Cape Town",
+      "url": "https://www.uct.ac.za/contacts-maps/directions-uct",
+      "publisher": "University of Cape Town",
+      "source_type": "official",
+      "date_published": null,
+      "date_accessed": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    }
+  ],
+  "suburb_profiles": [
+    {
+      "suburb_id": "22222222-2222-2222-2222-222222222222",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Claremont as a vibrant Southern Suburbs neighbourhood with diverse communities and plenty to see and do.",
+      "standout_feature": "Cavendish Square is a major retail anchor in the heart of Claremont.",
+      "standout_source_id": "8590aab3-6abf-3f98-fbaa-0a2a4c95548c",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 231 rental listings in Claremont at access time.",
+        "data_gaps": [
+          "No suburb-level transport distance pack has been compiled yet.",
+          "Residential samples are direct listings, not normalized rent bands."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Observatory as a creative, bohemian neighbourhood with thrift stores, cafes, bars, and a laid-back local identity.",
+      "standout_feature": "Groote Schuur Hospital is located in Observatory.",
+      "standout_source_id": "f2cd9478-bc18-0842-d8ad-8ddaf82bed9a",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 297 rental listings in Observatory at access time.",
+        "data_gaps": [
+          "Transport values still need direct map-based verification.",
+          "Some Observatory listings are house-share stock and should be excluded from future rent-band modeling."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism says Table View is named after its views of Table Mountain and positions it as a suburban neighbourhood close to the western seaboard beach lifestyle.",
+      "standout_feature": "Table View is named after its views of Table Mountain.",
+      "standout_source_id": "87fb8e74-b456-007a-ac5d-fbb671022612",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 114 rental listings in Table View at access time.",
+        "data_gaps": [
+          "No verified suburb-specific commute set has been added yet.",
+          "Beachfront and inland Table View stock should be split later because pricing differs."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Bellville as a residential, industrial, and commercial area in Cape Town's Northern Suburbs with access to shopping and family attractions.",
+      "standout_feature": "Tyger Valley Shopping Centre has over 275 retail offerings.",
+      "standout_source_id": "552f3246-6c40-fbfe-cd92-b3074776671f",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 1,014 rental listings across Bellville and its sub-areas at access time.",
+        "data_gaps": [
+          "Bellville results span multiple sub-areas; later migration should normalize by sub-area where needed.",
+          "Residential samples here are broad Bellville market observations, not a single micro-node."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "access_date": "2026-03-16",
+      "short_summary": "UCT states that its Groote Schuur Campus is situated in the suburb of Rondebosch, giving the area a strong education anchor.",
+      "standout_feature": "UCT's Groote Schuur Campus is situated in Rondebosch.",
+      "standout_source_id": "d0329041-91b0-fd88-d07e-a409947236f0",
+      "metadata": {
+        "listing_page_note": "Direct overall residential count was not captured cleanly from Property24; sample listings below are source-backed.",
+        "data_gaps": [
+          "Need a cleaner full-category rental count capture.",
+          "Student-oriented room-share stock near UCT needs separate treatment from standard household rentals."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism positions Sea Point as an Atlantic Seaboard neighbourhood between Signal Hill and the ocean, anchored by the promenade and a strong apartment market.",
+      "standout_feature": "The Sea Point Promenade stretches along the shoreline into Mouille Point past Green Point.",
+      "standout_source_id": "8b323179-ba15-d277-8da1-2b6ca1cd0e3a",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 297 rental listings in Sea Point at access time.",
+        "data_gaps": [
+          "A number of Sea Point listings are furnished or short-term biased and should be flagged during migration.",
+          "Future migration should split studio and one-bed apartment stock cleanly."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Woodstock as one of Cape Town's oldest suburbs and a creative hub with food, design, and street art.",
+      "standout_feature": "The Old Biscuit Mill at 373-375 Albert Road is a major Woodstock drawcard.",
+      "standout_source_id": "595f5aa0-7ff7-ec8d-c53d-6bc588f636f2",
+      "metadata": {
+        "listing_page_note": "A clean total residential count was not captured from the Woodstock category page because Property24 search results were pagination-biased.",
+        "data_gaps": [
+          "House-share and student-leaning Woodstock stock needs separate treatment from standard household rentals.",
+          "The Woodstock search result set needs one cleaner category scrape in the migration phase."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "access_date": "2026-03-16",
+      "short_summary": "The official Century City precinct page describes the area as a 250-hectare mixed-use business and lifestyle precinct halfway between the Cape Town CBD and the northern suburbs.",
+      "standout_feature": "Century City is a 250ha mixed-use precinct halfway between the Cape Town CBD and the northern suburbs.",
+      "standout_source_id": "89b5387c-c9c2-2158-1ccb-e98862b48817",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 548 rental listings in Century City at access time.",
+        "data_gaps": [
+          "Century City includes a high share of furnished and short-stay stock, so long-term migration rules need extra filtering.",
+          "Residential stock should later be separated by estate or development where possible."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Durbanville as a Cape Town winelands town with outdoor recreation and access to nearby wineries.",
+      "standout_feature": "Durbanville Wine Valley is positioned as a key local drawcard and is described as a short drive from Cape Town.",
+      "standout_source_id": "bcaa351e-bd36-4ee8-c180-d75194b57c73",
+      "metadata": {
+        "listing_page_note": "Property24 search result showed 51 houses, 28 apartments, and 18 townhouses to rent in Durbanville at access time.",
+        "data_gaps": [
+          "Durbanville samples span multiple sub-areas such as Amanda Glen, Vierlanden, and Durbanville Central.",
+          "Migration should likely treat Durbanville micro-areas separately if suburb-level precision is required."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "suburb_id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "access_date": "2026-03-16",
+      "short_summary": "Cape Town Tourism describes Newlands as a leafy Southern Suburbs neighbourhood known for nature, sport, and mountain access.",
+      "standout_feature": "Kirstenbosch National Botanical Garden is located on Rhodes Drive in Newlands.",
+      "standout_source_id": "e6c0a60d-2007-1549-64c2-1bac3015a3ce",
+      "metadata": {
+        "listing_page_note": "A clean overall residential count was not captured from the Newlands category page, but multiple current listing samples were verified.",
+        "data_gaps": [
+          "Newlands stock includes premium furnished and short-lease options that should be tagged during migration.",
+          "A full category count for Newlands residential listings still needs one clean capture."
+        ],
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    }
+  ],
+  "suburb_features": [
+    {
+      "id": "c5364554-60a4-84eb-d206-94c731e4e7fa",
+      "suburb_id": "22222222-2222-2222-2222-222222222222",
+      "feature_type": "standout",
+      "fact": "Cavendish Square is a major retail anchor in the heart of Claremont.",
+      "source_id": "8590aab3-6abf-3f98-fbaa-0a2a4c95548c",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "f7977f43-358e-db98-b235-9063b6960a38",
+      "suburb_id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "feature_type": "standout",
+      "fact": "Groote Schuur Hospital is located in Observatory.",
+      "source_id": "f2cd9478-bc18-0842-d8ad-8ddaf82bed9a",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "b7aed06a-3a4e-35c1-affa-56c2f5c659f9",
+      "suburb_id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "feature_type": "standout",
+      "fact": "Table View is named after its views of Table Mountain.",
+      "source_id": "87fb8e74-b456-007a-ac5d-fbb671022612",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8c3a41b1-53f9-f076-56e5-8d6d41e058ff",
+      "suburb_id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "feature_type": "standout",
+      "fact": "Tyger Valley Shopping Centre has over 275 retail offerings.",
+      "source_id": "552f3246-6c40-fbfe-cd92-b3074776671f",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "cdc79411-af5c-dda3-5d79-d008813c136c",
+      "suburb_id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "feature_type": "standout",
+      "fact": "UCT's Groote Schuur Campus is situated in Rondebosch.",
+      "source_id": "d0329041-91b0-fd88-d07e-a409947236f0",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "39650b5b-0ad2-fda8-fc85-2d73991ceaa1",
+      "suburb_id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "feature_type": "standout",
+      "fact": "The Sea Point Promenade stretches along the shoreline into Mouille Point past Green Point.",
+      "source_id": "8b323179-ba15-d277-8da1-2b6ca1cd0e3a",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "2960ffd8-24ab-0620-f15c-7ea874db0ee3",
+      "suburb_id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "feature_type": "standout",
+      "fact": "The Old Biscuit Mill at 373-375 Albert Road is a major Woodstock drawcard.",
+      "source_id": "595f5aa0-7ff7-ec8d-c53d-6bc588f636f2",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "1fc82065-41e7-499d-eae3-0fc5c724df49",
+      "suburb_id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "feature_type": "standout",
+      "fact": "Century City is a 250ha mixed-use precinct halfway between the Cape Town CBD and the northern suburbs.",
+      "source_id": "89b5387c-c9c2-2158-1ccb-e98862b48817",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "cee6a596-cada-670b-d206-60170db7df3e",
+      "suburb_id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "feature_type": "standout",
+      "fact": "Durbanville Wine Valley is positioned as a key local drawcard and is described as a short drive from Cape Town.",
+      "source_id": "bcaa351e-bd36-4ee8-c180-d75194b57c73",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "abefc268-ab89-7b65-50dd-83827499149b",
+      "suburb_id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "feature_type": "standout",
+      "fact": "Kirstenbosch National Botanical Garden is located on Rhodes Drive in Newlands.",
+      "source_id": "e6c0a60d-2007-1549-64c2-1bac3015a3ce",
+      "access_date": "2026-03-16",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    }
+  ],
+  "housing_listing_samples": [
+    {
+      "id": "75f2752f-1373-4416-ff35-8ee5dc904c5b",
+      "suburb_id": "22222222-2222-2222-2222-222222222222",
+      "source_id": "684fac83-8978-9c85-74fc-f74500667de9",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 19500,
+      "listing_title": "Claremont, Cape Town Property : Property and houses to rent in Claremont, Cape Town : Property24.com",
+      "notes": "The Claremont, 53 Main Road; 81 m2; 2 bathrooms; 2 parking bays.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "5b6ec1e7-4e68-7931-daa8-0ce00c6a6805",
+      "suburb_id": "22222222-2222-2222-2222-222222222222",
+      "source_id": "451fd9d5-6974-7a88-a078-a068d494b353",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 18000,
+      "listing_title": "3 Bedroom House to rent in Claremont - P24-116107540",
+      "notes": "Unfurnished 3-bedroom house in Claremont.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "21536eff-1710-bfbe-871e-ae4419b795bb",
+      "suburb_id": "22222222-2222-2222-2222-222222222222",
+      "source_id": "45c8d127-2945-7144-7e29-1ebb60ce6cfe",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 4,
+      "parking_spaces": null,
+      "monthly_rent_zar": 40000,
+      "listing_title": "4 Bedroom Townhouse to rent in Claremont - 5 Midwood Ave - P24-115448770",
+      "notes": "5 Midwood Ave; Midwood Mews townhouse; 165 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "73ac27dc-f42d-ef17-d20a-d2ceaea67ef8",
+      "suburb_id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "source_id": "73cebd66-4419-0f48-0895-05b4a7937d6b",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 12500,
+      "listing_title": "Observatory, Cape Town Property : Property and houses to rent in Observatory, Cape Town : Property24.com",
+      "notes": "1-bedroom apartment in Observatory; 40 m2; 1 parking bay.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "657165e4-53d9-6e63-8356-88d518bb8cc5",
+      "suburb_id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "source_id": "5d48f714-fd4b-43a1-5453-3e822a9dbd88",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 10100,
+      "listing_title": "2 Bedroom Apartment / flat to rent in Observatory - P24-116320282",
+      "notes": "Malta Park apartment; 1 bathroom; 1 garage.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "ce9cbbde-3530-0927-9848-4415d9ea41ee",
+      "suburb_id": "70b49d94-abd3-0856-dc87-3ef946b78b46",
+      "source_id": "dfc28a12-4046-0f4d-ec23-a8243e0fc77e",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 18000,
+      "listing_title": "2 Bedroom House to rent in Observatory - P24-116195515",
+      "notes": "2-bedroom house in Observatory; 1 bathroom; 1 garage.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "09956176-4d1a-380c-4b5b-c3cc61f6437b",
+      "suburb_id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "source_id": "417a7b07-db6d-886a-d71b-4260a0bdf9b7",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 9500,
+      "listing_title": "Table View Property : Property and houses to rent in Table View : Property24.com - Page 3",
+      "notes": "Studio-style 1-bedroom unit in Table View; 24 m2; furnished.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "80ce4c8c-e3fe-8d20-abfd-e41edb0bcb62",
+      "suburb_id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "source_id": "e9e7cf77-ab4e-6ea4-79df-f056bca8576b",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 13500,
+      "listing_title": "Table View Property : Property and houses to rent in Table View : Property24.com - Page 5",
+      "notes": "2-bedroom apartment sample from Table View category results.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "0582a36b-c25b-a470-ac07-3582f7aac5e7",
+      "suburb_id": "985c32e4-396e-9819-8aaa-d83253a7bfc4",
+      "source_id": "80c0b2dd-fca4-a22d-b0f6-f5bf0de70597",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 22000,
+      "listing_title": "Table View Property : Property and houses to rent in Table View : Property24.com",
+      "notes": "47 Jansens Avenue; 3-bedroom house; 936 m2 erf.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "2a333ab7-2a30-d5b6-72ed-1b5368d74cf3",
+      "suburb_id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "source_id": "52645dde-10f2-4304-ef66-cacd7e30663b",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 5850,
+      "listing_title": "1 Bedroom Apartment / flat to rent in Bellville Central - P24-115961066",
+      "notes": "Bellville Central bachelor flat; water, sewerage, and refuse included.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8d8e79f1-b795-b83f-2a8c-53c8fc15a5d5",
+      "suburb_id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "source_id": "208e6c88-2e81-cec5-416d-55cbd74274ca",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 14500,
+      "listing_title": "Townhouses to rent in Bellville : Bellville Property : Property24.com",
+      "notes": "2-bedroom townhouse in Kenridge.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "76b0d511-071a-e719-aaa3-b1e7bd45e9a8",
+      "suburb_id": "6ff666ec-9ddf-3d14-f493-035f196ea1d1",
+      "source_id": "3adaf440-f31b-070d-1e76-169f2ab0013a",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 13500,
+      "listing_title": "3 Bedroom Townhouse to Rent in Oude Westhof - 33,35 & 37 Blanc De Noir, 1 Bukettraube Close - P24-114407425",
+      "notes": "3-bedroom townhouse in Oude Westhof; 127 m2 floor area.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "b07a1451-e298-2ed1-d68c-8ba3ab927a93",
+      "suburb_id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "source_id": "aadbdd25-a1d4-b1b2-874e-b6ec4e66abcd",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 11000,
+      "listing_title": "Rondebosch Property : Property and houses to rent in Rondebosch : Property24.com",
+      "notes": "4 Firleigh Flats, 2a Bridge Street; 53 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "975f8e20-9f56-6758-f206-6deba830b9aa",
+      "suburb_id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "source_id": "0fe67089-4b58-99bd-4000-94ecc4312b89",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 4,
+      "parking_spaces": null,
+      "monthly_rent_zar": 28000,
+      "listing_title": "4 Bedroom House to rent in Rondebosch - P24-111716359",
+      "notes": "4-bedroom family home in Rondebosch; 537 m2 erf.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "36545e05-a912-75ee-61d5-48cc17579ac7",
+      "suburb_id": "c76b6e04-3306-5577-7812-e49d6602d2c4",
+      "source_id": "84d04ae4-def1-554e-4566-13d4e372d258",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 55000,
+      "listing_title": "3 Bedroom Townhouse to rent in Rondebosch - 54 Park Road - P24-116256882",
+      "notes": "54 Park Road; Rondebosch Oval security development; 240 m2 floor area.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "9aac7301-4f0d-e940-2f7e-bc5b8cb0b716",
+      "suburb_id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "source_id": "b9ce76e9-a196-f14a-11a4-660957ba7262",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 0,
+      "parking_spaces": null,
+      "monthly_rent_zar": 14500,
+      "listing_title": "Sea Point Property : Property and houses to rent in Sea Point : Property24.com",
+      "notes": "0.5-bedroom studio apartment at 7 Penarth Road; 35 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8524637b-5031-0c13-4cc4-0a431696e8b2",
+      "suburb_id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "source_id": "b9ce76e9-a196-f14a-11a4-660957ba7262",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 24000,
+      "listing_title": "Sea Point Property : Property and houses to rent in Sea Point : Property24.com",
+      "notes": "1-bedroom apartment at 259 On Beach; 77 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "ee2750ee-8a96-a413-7121-4e62a3e01abc",
+      "suburb_id": "f0d4fbad-67e5-8cc0-8ce7-bfc2d99e71df",
+      "source_id": "b9ce76e9-a196-f14a-11a4-660957ba7262",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 35000,
+      "listing_title": "Sea Point Property : Property and houses to rent in Sea Point : Property24.com",
+      "notes": "10a Rosedene Rd; semi-detached home; six-month lease note in source.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "fa78beb8-c8d3-b0c9-2f19-7b32884f8d21",
+      "suburb_id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "source_id": "499568ab-931c-0e2e-8bae-83ea43d08d13",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 10950,
+      "listing_title": "1 Bedroom Apartment / flat to rent in Woodstock - 4 Bromwell Street - P24-116124832",
+      "notes": "4 Bromwell Street; 38 m2 bachelor-style apartment.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "e632d67d-2a21-c92a-f687-60c82cb2d8bb",
+      "suburb_id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "source_id": "16f80f66-17d6-4d7b-ca70-797f216d6d2d",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 17500,
+      "listing_title": "2 Bedroom Apartment / flat to rent in Woodstock - 1 Upper East Side, 31 Brickfield - P24-115835774",
+      "notes": "Upper East Side; 84 m2; 2 parking bays.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "4b6f8a1f-de8d-3b4c-a017-ca8718cd4aeb",
+      "suburb_id": "df9651e6-ed98-c46c-14cf-38c0a5d07435",
+      "source_id": "b72d7aba-dc51-2c9d-a68a-e8030011a8da",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 21000,
+      "listing_title": "2 Bedroom House to rent in Woodstock - 11 Melbourne Road - P24-110134910",
+      "notes": "11 Melbourne Road; renovated Victorian cottage.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "d56294ef-3448-efb7-6135-5ea004995095",
+      "suburb_id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "source_id": "f0057c96-90b1-be43-160f-7cef75ddf29e",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 17000,
+      "listing_title": "1 Bedroom Apartment / flat to rent in Century City - P24-115608137",
+      "notes": "Fully furnished loft apartment in Century City; 70 m2; short fixed lease.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "4d54f2ae-136f-e621-459e-6b2e8137f7db",
+      "suburb_id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "source_id": "02523971-ef95-0c2c-4cb6-05c9bf607214",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 20000,
+      "listing_title": "Century City Property : Property and houses to rent in Century City : Property24.com",
+      "notes": "2-bedroom apartment sample from Property24 Century City category results; 80 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "e820f8af-cef7-26c5-f01c-1fd7ed930008",
+      "suburb_id": "00d90a9b-494b-c150-5634-f84c13fc6bf6",
+      "source_id": "854ec721-aae8-43ba-9d26-17e3152eecfb",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 29000,
+      "listing_title": "Century City Property : Townhouses to rent in Century City : Property24.com",
+      "notes": "3-bedroom townhouse sample from Century City townhouse category.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "1220039e-f3aa-93b9-21c5-afd629803f11",
+      "suburb_id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "source_id": "9313fa3f-e2b6-7d1b-2c53-f7260980d8e4",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 1,
+      "parking_spaces": null,
+      "monthly_rent_zar": 13500,
+      "listing_title": "1 Bedroom Townhouse to rent in Amanda Glen - 1 Patou Avenue - P24-116100751",
+      "notes": "Amanda Glen; 73 m2; secure Bergsig Garden Village complex.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "abdb5813-7975-6aa4-91dc-da93904690dd",
+      "suburb_id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "source_id": "ccdec93c-5833-e75f-eae6-ecd2ff0e2e4e",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 15500,
+      "listing_title": "Houses to rent in Durbanville : Durbanville Property : Property24.com",
+      "notes": "Durbanville Central 2-bedroom house sample from houses category.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "4647d7bb-1265-4aed-ab85-364caf04ac03",
+      "suburb_id": "366b3ba4-cc06-99a5-b3e1-c917429f6ba4",
+      "source_id": "6d86f913-63b0-404f-26c9-75a7ab5a0977",
+      "access_date": "2026-03-16",
+      "property_type": "townhouse",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 24950,
+      "listing_title": "Townhouses to rent in Durbanville : Durbanville Property : Property24.com",
+      "notes": "Vierlanden townhouse sample from Durbanville townhouse category.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "72b216ff-5bcb-d18b-b658-adfbc96b944f",
+      "suburb_id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "source_id": "ec483c61-9872-7a36-49f4-abaa2c72aed3",
+      "access_date": "2026-03-16",
+      "property_type": "apartment",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 24000,
+      "listing_title": "Newlands, Cape Town Property : Property and houses to rent in Newlands, Cape Town : Property24.com",
+      "notes": "135 Campground Rd apartment sample from Newlands category results; 100 m2.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "c12af019-ee35-e8f2-96c6-be9a6dff123e",
+      "suburb_id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "source_id": "0261797f-2db4-be3d-a133-bcd08709af61",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 2,
+      "parking_spaces": null,
+      "monthly_rent_zar": 35000,
+      "listing_title": "2 Bedroom House to rent in Newlands - P24-115518459",
+      "notes": "Fully furnished home on shared property in Newlands.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    },
+    {
+      "id": "8e685a5f-cc23-bd88-39ba-9aeb48410217",
+      "suburb_id": "bf7804c8-6b28-f47d-6f44-e95e49bde03c",
+      "source_id": "cf5c19cb-7601-00f7-ddca-4bf26b63eb6f",
+      "access_date": "2026-03-16",
+      "property_type": "house",
+      "bedrooms": 3,
+      "parking_spaces": null,
+      "monthly_rent_zar": 35000,
+      "listing_title": "3 Bedroom House to rent in Newlands - 19 Van Reenen Close - P24-115215867",
+      "notes": "19 Van Reenen Close; estate-style Newlands home with fibre and secure parking.",
+      "metadata": {
+        "research_batch": "cape-town-suburbs-research-2026-03-16"
+      }
+    }
+  ]
+}
