@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: `${siteUrl}/cost-of-living/capetown`,
+      url: `${siteUrl}/cost-of-living/cape-town`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,

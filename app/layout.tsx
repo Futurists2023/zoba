@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     "zoba is a mobile-first cost of living planner for young professionals, couples, and families.",
   applicationName: "zoba",
   alternates: {
-    canonical: "/cost-of-living/capetown",
+    canonical: "/cost-of-living/cape-town",
   },
   openGraph: {
     type: "website",
-    url: "/cost-of-living/capetown",
+    url: "/cost-of-living/cape-town",
     siteName: "zoba",
     title: "zoba",
     description:
