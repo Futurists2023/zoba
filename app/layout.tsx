@@ -10,28 +10,28 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "zoba",
-    template: "%s | zoba",
+    default: "AffordableSchools",
+    template: "%s | AffordableSchools",
   },
   description:
-    "zoba is a mobile-first cost of living planner for young professionals, couples, and families.",
-  applicationName: "zoba",
+    "AffordableSchools helps Midrand families shortlist affordable primary schools with simulated budget, commute, and feature matching.",
+  applicationName: "AffordableSchools",
   alternates: {
-    canonical: "/cost-of-living/cape-town",
+    canonical: "/affordable-schools/midrand",
   },
   openGraph: {
     type: "website",
-    url: "/cost-of-living/cape-town",
-    siteName: "zoba",
-    title: "zoba",
+    url: "/affordable-schools/midrand",
+    siteName: "AffordableSchools",
+    title: "AffordableSchools",
     description:
-      "zoba is a mobile-first cost of living planner for young professionals, couples, and families.",
+      "Parent-first school matching for Midrand families, powered by clearly labeled simulated demo data.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "zoba",
+    title: "AffordableSchools",
     description:
-      "zoba is a mobile-first cost of living planner for young professionals, couples, and families.",
+      "Find affordable primary schools in Midrand with budget, commute, and shortlist-first matching.",
   },
   robots: {
     index: true,
@@ -44,18 +44,34 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  verification: {
-    google: "Uwjqmg3-739dulHr8Vl_2HuS2abol3-Gs43Eaw6edH0",
-    other: {
-      "msvalidate.01": "42383C99EBC61D529449307260421C9D",
-    },
-  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="bg-sand text-ink">
+      <body>
+        <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(245,164,90,0.22),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(55,114,255,0.14),_transparent_22%),linear-gradient(180deg,_#fffdf7_0%,_#f5efe2_100%)]">
+          <div className="sticky top-0 z-40 border-b border-ink/10 bg-white/85 backdrop-blur">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-[1.1rem] bg-ink text-sm font-black text-white shadow-[0_12px_30px_rgba(24,34,47,0.18)]">
+                  AS
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-clay">
+                    AffordableSchools
+                  </p>
+                  <p className="text-sm font-semibold text-ink">Midrand</p>
+                </div>
+              </div>
+              <div className="rounded-full border border-ink/10 bg-sand px-3 py-1.5 text-[11px] font-semibold text-ink-soft">
+                2026
+              </div>
+            </div>
+          </div>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

@@ -1,1035 +1,162 @@
-begin;
+﻿create extension if not exists pgcrypto;
 
-insert into public.pricing_snapshots (
-  id,
-  snapshot_date,
-  version_label,
-  notes,
-  is_live
-)
-values (
-  '11111111-1111-1111-1111-111111111111',
-  date '2026-03-16',
-  '2026-03-cape-town-v1',
-  'Initial Cape Town MVP snapshot seeded with Claremont test data.',
-  true
-)
-on conflict (id) do update
-set
-  snapshot_date = excluded.snapshot_date,
-  version_label = excluded.version_label,
-  notes = excluded.notes,
-  is_live = excluded.is_live;
+truncate table public.school_reviews restart identity cascade;
+truncate table public.schools restart identity cascade;
+truncate table public.suburbs restart identity cascade;
+truncate table public.regions restart identity cascade;
 
-insert into public.suburbs (
-  id,
-  name,
-  slug,
-  city,
-  region_group,
-  is_active,
-  metadata
+insert into public.regions (name, slug, description)
+values ('Midrand', 'midrand', 'AffordableSchools Midrand Phase 1 target region');
+
+with region as (
+  select id from public.regions where slug = 'midrand'
 )
-values (
-  '22222222-2222-2222-2222-222222222222',
-  'Claremont',
-  'claremont',
-  'Cape Town',
-  'southern_suburbs',
-  true,
+insert into public.suburbs (region_id, name, slug, median_budget_band, pitch, latitude, longitude)
+select region.id, v.name, v.slug, v.median_budget_band, v.pitch, v.latitude, v.longitude
+from region,
+(
+  values
+    ('Noordwyk', 'noordwyk', 'R4 500-R8 000 monthly', 'Popular with practical family budgets and quick N1 access.', -25.966000, 28.126000),
+    ('Halfway Gardens', 'halfway-gardens', 'R5 500-R9 500 monthly', 'Central Midrand location with balanced commute options.', -25.986000, 28.123000),
+    ('Vorna Valley', 'vorna-valley', 'R5 000-R8 500 monthly', 'Convenient for families prioritising practical routes and aftercare.', -26.008000, 28.116000),
+    ('Buccleuch', 'buccleuch', 'R5 000-R8 500 monthly', 'Useful for households balancing Midrand and Sandton work patterns.', -26.058000, 28.099000),
+    ('Carlswald', 'carlswald', 'R6 500-R11 000 monthly', 'A family-oriented pocket with many private-school options nearby.', -25.946000, 28.139000),
+    ('Kyalami', 'kyalami', 'R8 500-R13 000 monthly', 'Good for families who value facilities, sport, and more space.', -25.964000, 28.071000),
+    ('Barbeque Downs', 'barbeque-downs', 'R6 000-R9 500 monthly', 'Compact suburb that suits practical commuting and mixed school choices.', -26.023000, 28.094000),
+    ('Waterfall', 'waterfall', 'R8 000-R14 000 monthly', 'Newer family nodes with stronger premium-school spillover.', -26.018000, 28.103000),
+    ('Blue Hills', 'blue-hills', 'R5 500-R9 000 monthly', 'Useful for families seeking more value while staying in the Midrand orbit.', -25.928000, 28.101000),
+    ('Glen Austin', 'glen-austin', 'R6 500-R10 500 monthly', 'A quieter Midrand pocket with a mix of established and boutique schools.', -25.958000, 28.152000)
+) as v(name, slug, median_budget_band, pitch, latitude, longitude);
+
+with school_rows(name, slug, suburb_slug, school_type, annual_fee_min, annual_fee_max, registration_fee, deposit_fee, aftercare_available, transport_available, swimming_available, sports, facilities, must_have_features, nice_to_have_features, curriculum, religious_affiliation, class_size_estimate, latitude_offset, longitude_offset, distance_from_suburb_center_km) as (
+  values
+    ('Midrand English Medium Primary School','midrand-english-medium-primary-school','noordwyk','public',18000,26000,1200,2200,true,false,false,array['Soccer','Netball','Cricket'],array['Library','Hall','Playground'],array['Aftercare','Soccer','Library'],array['Meal option','Extra murals'],'CAPS',null,31,0.003,-0.004,2.3),
+    ('Midrand Christian College','midrand-christian-college','noordwyk','private_mid_tier',62000,89000,6500,9500,true,true,true,array['Soccer','Rugby','Netball','Music'],array['Library','Swimming pool','Computer lab'],array['Aftercare','Transport','Music'],array['Modern classrooms','Holiday care'],'CAPS with Christian enrichment','Christian',24,-0.002,0.003,3.1),
+    ('Midrand Montessori Preschool and Primary','midrand-montessori-preschool-and-primary','noordwyk','private_mid_tier',58000,81000,5500,8200,true,true,false,array['Soccer','Music'],array['Garden classrooms','Library','Art room'],array['Small classes','Aftercare'],array['Modern classrooms','Holiday care'],'Montessori',null,18,0.004,0.001,1.8),
+    ('Halfway House Primary School','halfway-house-primary-school','halfway-gardens','public',16000,24000,1000,1800,true,false,false,array['Soccer','Netball','Cricket'],array['Library','Hall','Computer lab'],array['Aftercare','Soccer'],array['Library','Meal option'],'CAPS',null,33,0.001,-0.002,2.1),
+    ('Laerskool Halfway House','laerskool-halfway-house','halfway-gardens','public',15000,22500,950,1650,true,false,false,array['Rugby','Cricket','Netball'],array['Library','Sports fields','Hall'],array['Aftercare','Rugby','Cricket'],array['Meal option','Extra murals'],'CAPS',null,32,-0.003,-0.004,2.8),
+    ('Christ Church Preparatory School and College','christ-church-preparatory-school-and-college','halfway-gardens','private_mid_tier',70000,96000,7000,10500,true,true,true,array['Soccer','Netball','Music','Swimming'],array['Library','Swimming pool','STEM lab'],array['Aftercare','Transport','Swimming'],array['Coding/Robotics','Modern classrooms'],'CAPS','Christian',23,0.004,0.002,3.6),
+    ('Cedarwood School','cedarwood-school','vorna-valley','private_mid_tier',52000,76000,4800,7600,true,true,false,array['Soccer','Netball','Music'],array['Library','Therapy room','Computer lab'],array['Aftercare','Transport','Small classes'],array['Modern classrooms','Holiday care'],'Learner support CAPS',null,16,0.002,0.003,2.9),
+    ('Modern Montessori International','modern-montessori-international','vorna-valley','private_mid_tier',61000,86000,6000,8400,true,false,false,array['Music','Soccer'],array['Art studio','Garden classrooms','Library'],array['Small classes','Aftercare'],array['Modern classrooms','Library'],'Montessori',null,17,-0.002,0.002,2.6),
+    ('Curro Midrand Sagewood','curro-midrand-sagewood','vorna-valley','private_mid_tier',78000,112000,7500,12000,true,true,true,array['Swimming','Soccer','Cricket','Netball'],array['Swimming pool','STEM lab','Library'],array['Aftercare','Transport','Swimming'],array['Coding/Robotics','Modern classrooms'],'CAPS',null,24,0.004,-0.003,4.7),
+    ('SPARK Midrand','spark-midrand','buccleuch','private_low_fee',32000,46000,2500,3600,true,false,false,array['Soccer','Netball'],array['Modern classrooms','Computer lab'],array['Aftercare','Coding/Robotics'],array['Modern classrooms','Sibling discount'],'CAPS',null,28,0.003,0.003,4.2),
+    ('Midrand Muslim School','midrand-muslim-school','buccleuch','private_low_fee',36000,52000,2800,4000,true,true,false,array['Soccer','Netball','Cricket'],array['Library','Prayer space','Computer lab'],array['Transport','Religious alignment'],array['Meal option','Extra murals'],'CAPS','Muslim',27,-0.002,-0.001,4.8),
+    ('Midrand Primary and High School','midrand-primary-and-high-school','buccleuch','public',14000,21000,950,1500,true,false,false,array['Soccer','Netball'],array['Library','Hall','Computer lab'],array['Aftercare','Soccer'],array['Meal option','Library'],'CAPS',null,34,0.001,-0.003,5.4),
+    ('Beaulieu Preparatory School','beaulieu-preparatory-school','carlswald','private_premium',128000,162000,12000,18000,true,true,true,array['Swimming','Rugby','Cricket','Music'],array['Equestrian access','Swimming pool','Library'],array['Transport','Swimming','Small classes'],array['Modern classrooms','Holiday care'],'CAPS',null,19,0.003,0.004,3.2),
+    ('Maria Montessori House of Children','maria-montessori-house-of-children','carlswald','private_mid_tier',64000,92000,6200,9000,true,false,false,array['Music','Soccer'],array['Garden classrooms','Library','Art room'],array['Small classes','Aftercare'],array['Modern classrooms','Library'],'Montessori',null,16,-0.003,0.001,2.5),
+    ('Summerhill College','summerhill-college','carlswald','private_mid_tier',76000,108000,7800,12200,true,true,true,array['Swimming','Soccer','Cricket','Netball'],array['Swimming pool','Library','Computer lab'],array['Aftercare','Transport','Swimming'],array['Coding/Robotics','Modern classrooms'],'CAPS',null,24,0.002,-0.002,3.9),
+    ('Kyalami Preparatory School','kyalami-preparatory-school','kyalami','private_premium',136000,170000,13000,19000,true,true,true,array['Swimming','Rugby','Cricket','Netball'],array['Swimming pool','Library','Sports fields'],array['Swimming','Transport','Small classes'],array['Holiday care','Modern classrooms'],'CAPS',null,18,0.003,-0.003,3.8),
+    ('Jubilate Primary School','jubilate-primary-school','kyalami','private_low_fee',30000,44000,2400,3500,true,true,false,array['Soccer','Netball','Music'],array['Library','Hall','Computer lab'],array['Aftercare','Transport','Music'],array['Meal option','Holiday care'],'CAPS','Christian',26,-0.004,0.002,4.4),
+    ('Midrand Christian Academy','midrand-christian-academy','kyalami','private_low_fee',34000,49000,2600,3800,true,true,false,array['Soccer','Netball','Music'],array['Library','Assembly hall','Computer lab'],array['Aftercare','Transport','Religious alignment'],array['Meal option','Sibling discount'],'CAPS','Christian',28,0.001,0.004,4.9),
+    ('Noor Training Centre','noor-training-centre','barbeque-downs','private_low_fee',26000,39000,2100,3000,true,true,false,array['Soccer','Netball'],array['Library','Prayer space','Computer lab'],array['Transport','Religious alignment'],array['Meal option','Holiday care'],'CAPS','Muslim',27,0.002,-0.004,3.4),
+    ('Bonwelong Primary School','bonwelong-primary-school','barbeque-downs','public',12000,19500,900,1400,false,false,false,array['Soccer','Netball'],array['Hall','Playground'],array['Soccer'],array['Meal option','Extra murals'],'CAPS',null,36,-0.003,0.001,3.9),
+    ('Eqinisweni Primary School','eqinisweni-primary-school','waterfall','public',12500,20000,850,1350,false,false,false,array['Soccer','Netball'],array['Hall','Playground','Computer lab'],array['Soccer'],array['Library','Meal option'],'CAPS',null,35,-0.001,-0.002,5.1),
+    ('Reddam House Waterfall','reddam-house-waterfall','waterfall','private_premium',142000,178000,13500,21000,true,true,true,array['Swimming','Rugby','Cricket','Music'],array['Performing arts centre','Swimming pool','Library'],array['Transport','Swimming','Music'],array['Coding/Robotics','Modern classrooms'],'IEB-aligned primary',null,20,0.004,-0.001,4.2),
+    ('Waterfall Montessori','waterfall-montessori','waterfall','private_mid_tier',68000,93000,6500,9800,true,false,false,array['Music','Soccer'],array['Garden classrooms','Art room','Library'],array['Small classes','Aftercare'],array['Modern classrooms','Holiday care'],'Montessori',null,17,0.002,0.003,3.6),
+    ('Reddford House Blue Hills','reddford-house-blue-hills','blue-hills','private_premium',138000,172000,13200,19600,true,true,true,array['Swimming','Soccer','Cricket','Music'],array['Swimming pool','Library','STEM lab'],array['Transport','Swimming','Music'],array['Coding/Robotics','Modern classrooms'],'IEB-aligned primary',null,21,0.002,-0.002,4.8),
+    ('Blue Hills College','blue-hills-college','blue-hills','private_low_fee',28000,42000,2200,3200,true,true,false,array['Soccer','Netball','Cricket'],array['Library','Hall','Computer lab'],array['Aftercare','Transport'],array['Meal option','Sibling discount'],'CAPS',null,29,-0.003,0.003,3.3),
+    ('Nizamiye School','nizamiye-school','blue-hills','private_mid_tier',54000,76000,5200,7600,true,true,true,array['Swimming','Soccer','Music'],array['Library','Prayer space','Science lab'],array['Transport','Swimming','Religious alignment'],array['Modern classrooms','Meal option'],'CAPS','Muslim',23,0.004,0.002,4.1),
+    ('Phumulani Primary School','phumulani-primary-school','glen-austin','public',12000,19000,850,1350,false,false,false,array['Soccer','Netball'],array['Hall','Playground'],array['Soccer'],array['Meal option','Extra murals'],'CAPS',null,37,0.002,-0.004,3.8),
+    ('Glen Austin Primary School','glen-austin-primary-school','glen-austin','public',13500,20500,900,1450,true,false,false,array['Soccer','Cricket','Netball'],array['Library','Hall','Playground'],array['Aftercare','Cricket'],array['Library','Extra murals'],'CAPS',null,33,-0.002,0.001,2.7),
+    ('Noordwyk Primary School','noordwyk-primary-school','glen-austin','public',14500,21500,950,1600,true,false,false,array['Soccer','Netball','Music'],array['Library','Computer lab','Playground'],array['Aftercare','Music'],array['Meal option','Library'],'CAPS',null,31,0.003,0.002,4.3)
+)
+insert into public.schools (
+  suburb_id, name, slug, school_type, grades_from, grades_to, annual_fee_min, annual_fee_max, monthly_estimate,
+  registration_fee, deposit_fee, aftercare_available, transport_available, swimming_available, sports, facilities,
+  must_have_features, nice_to_have_features, curriculum, religious_affiliation, class_size_estimate, latitude, longitude,
+  distance_from_suburb_center_km, review_score, review_count
+)
+select
+  sub.id,
+  rows.name,
+  rows.slug,
+  rows.school_type::public.school_type,
+  'Grade R',
+  'Grade 7',
+  rows.annual_fee_min,
+  rows.annual_fee_max,
+  round(rows.annual_fee_max / 12.0, 2),
+  rows.registration_fee,
+  rows.deposit_fee,
+  rows.aftercare_available,
+  rows.transport_available,
+  rows.swimming_available,
+  rows.sports,
+  rows.facilities,
+  rows.must_have_features,
+  rows.nice_to_have_features,
+  rows.curriculum,
+  rows.religious_affiliation,
+  rows.class_size_estimate,
+  sub.latitude + rows.latitude_offset,
+  sub.longitude + rows.longitude_offset,
+  rows.distance_from_suburb_center_km,
+  round(3.6 + ((row_number() over (order by rows.slug) * 37 % 12) / 10.0), 2),
+  0
+from school_rows rows
+join public.suburbs sub on sub.slug = rows.suburb_slug;
+
+insert into public.school_reviews (
+  school_id,
+  reviewer_alias,
+  overall_score,
+  headline,
+  body,
+  pros,
+  cons,
+  grade_relevant_to_review,
+  dimension_scores,
+  created_at
+)
+select
+  s.id,
+  case (g.n % 5)
+    when 0 then 'Parent from ' || sub.name
+    when 1 then 'Grade family in ' || sub.name
+    when 2 then 'Midrand guardian ' || sub.name
+    when 3 then 'Working parent in ' || sub.name
+    else 'Aftercare parent from ' || sub.name
+  end,
+  round(greatest(3.3, least(4.9, s.review_score + ((g.n % 3) - 1) * 0.1)), 2),
+  case (g.n % 5)
+    when 0 then 'Balanced option for practical families'
+    when 1 then 'Good value if transport matters'
+    when 2 then 'Helpful staff and solid routines'
+    when 3 then 'Strong fit for a tighter budget'
+    else 'Worth considering for daily logistics'
+  end,
+  case (g.n % 5)
+    when 0 then 'Our child settled quickly and the school feels practical for families watching both fees and travel time.'
+    when 1 then 'The experience feels structured, and the value is easier to justify than some pricier Midrand options nearby.'
+    when 2 then 'Communication has been steady and the daily routine feels manageable for a working household.'
+    when 3 then 'It is not the flashiest campus, but it covers the basics well and the overall cost feels more realistic.'
+    else 'This school stood out because the tradeoff between fees, location, and activities felt easier to manage.'
+  end,
+  array['Clear daily routine', 'Budget feels manageable'],
+  array['Busy drop-off times'],
+  'Grade R',
   jsonb_build_object(
-    'province', 'Western Cape',
-    'country', 'South Africa',
-    'summary', 'Dense, family-friendly southern suburbs node with strong schools, rail/bus options, and quick access to the CBD.'
-  )
-)
-on conflict (id) do update
-set
-  name = excluded.name,
-  slug = excluded.slug,
-  city = excluded.city,
-  region_group = excluded.region_group,
-  is_active = excluded.is_active,
-  metadata = excluded.metadata;
+    'overallSatisfaction', round(greatest(3.3, least(4.9, s.review_score + ((g.n % 3) - 1) * 0.1)), 2),
+    'valueForMoney', round(greatest(3.0, s.review_score - 0.1), 2),
+    'communication', round(least(5.0, s.review_score + 0.1), 2),
+    'facilities', round(greatest(3.2, s.review_score - 0.2), 2),
+    'sportsAndActivities', round(greatest(3.1, s.review_score - 0.1), 2),
+    'aftercareQuality', round(greatest(3.0, s.review_score - 0.2), 2),
+    'safetyAndCleanliness', round(least(5.0, s.review_score + 0.2), 2),
+    'childHappiness', round(least(5.0, s.review_score + 0.1), 2)
+  ),
+  timezone('utc', now()) - make_interval(days => g.n * 14)
+from public.schools s
+join public.suburbs sub on sub.id = s.suburb_id
+cross join lateral generate_series(1, 3 + (abs(hashtextextended(s.slug, 0)) % 4)) as g(n);
 
-delete from public.cost_bands
-where snapshot_id = '11111111-1111-1111-1111-111111111111';
+update public.schools s
+set review_count = counts.review_count,
+    review_score = counts.review_score
+from (
+  select school_id, count(*)::int as review_count, round(avg(overall_score), 2) as review_score
+  from public.school_reviews
+  group by school_id
+) counts
+where counts.school_id = s.id;
 
-insert into public.housing_costs (
-  snapshot_id,
-  suburb_id,
-  housing_mode,
-  property_type,
-  bedrooms,
-  parking_spaces,
-  low_value,
-  mid_value,
-  high_value,
-  confidence,
-  source_count,
-  metadata
-)
-values
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'rent',
-    'apartment',
-    1,
-    1,
-    12000.00,
-    14000.00,
-    16500.00,
-    'high',
-    12,
-    jsonb_build_object('listing_window_days', 30, 'notes', 'Typical newer or renovated one-bed units with parking.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'rent',
-    'apartment',
-    2,
-    1,
-    18000.00,
-    21000.00,
-    25000.00,
-    'high',
-    18,
-    jsonb_build_object('listing_window_days', 30, 'notes', 'Core family starter inventory around Claremont and Upper Claremont.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'rent',
-    'townhouse',
-    2,
-    1,
-    22000.00,
-    26000.00,
-    31000.00,
-    'medium',
-    7,
-    jsonb_build_object('listing_window_days', 45, 'notes', 'Smaller sample size than apartments, but still useful for modeling.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'rent',
-    'house',
-    3,
-    2,
-    30000.00,
-    36000.00,
-    43000.00,
-    'medium',
-    9,
-    jsonb_build_object('listing_window_days', 45, 'notes', 'Family home band with secure parking and garden bias.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'rent',
-    'house',
-    4,
-    2,
-    42000.00,
-    50000.00,
-    62000.00,
-    'medium',
-    6,
-    jsonb_build_object('listing_window_days', 60, 'notes', 'Upper-family stock with large homes and premium pockets.')
-  )
-on conflict on constraint housing_costs_unique do update
-set
-  low_value = excluded.low_value,
-  mid_value = excluded.mid_value,
-  high_value = excluded.high_value,
-  confidence = excluded.confidence,
-  source_count = excluded.source_count,
-  metadata = excluded.metadata;
-
-insert into public.transport_costs (
-  snapshot_id,
-  suburb_id,
-  work_destination_area,
-  round_trip_km,
-  per_km_rate,
-  car_fixed_band,
-  public_transport_band,
-  uber_trip_band,
-  confidence,
-  source_count,
-  metadata
-)
-values
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'cbd',
-    16.00,
-    4.85,
-    3500.00,
-    1200.00,
-    140.00,
-    'high',
-    3,
-    jsonb_build_object('peak_traffic', 'high', 'modeled_route', 'M3 or rail corridor')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'century_city',
-    32.00,
-    4.85,
-    3500.00,
-    1500.00,
-    220.00,
-    'medium',
-    2,
-    jsonb_build_object('peak_traffic', 'high', 'modeled_route', 'N2 and N1 corridor')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'claremont',
-    4.00,
-    4.85,
-    3500.00,
-    400.00,
-    60.00,
-    'high',
-    2,
-    jsonb_build_object('peak_traffic', 'low', 'modeled_route', 'local area')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'bellville',
-    44.00,
-    4.85,
-    3500.00,
-    1700.00,
-    260.00,
-    'medium',
-    2,
-    jsonb_build_object('peak_traffic', 'high', 'modeled_route', 'N1 corridor')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    '22222222-2222-2222-2222-222222222222',
-    'remote',
-    0.00,
-    4.85,
-    3500.00,
-    0.00,
-    80.00,
-    'high',
-    1,
-    jsonb_build_object('peak_traffic', 'none', 'modeled_route', 'remote worker baseline with local errands only')
-  )
-on conflict on constraint transport_costs_unique do update
-set
-  round_trip_km = excluded.round_trip_km,
-  per_km_rate = excluded.per_km_rate,
-  car_fixed_band = excluded.car_fixed_band,
-  public_transport_band = excluded.public_transport_band,
-  uber_trip_band = excluded.uber_trip_band,
-  confidence = excluded.confidence,
-  source_count = excluded.source_count,
-  metadata = excluded.metadata;
-
-insert into public.cost_bands (
-  snapshot_id,
-  category,
-  segment_key,
-  subsegment_key,
-  adult_count,
-  child_count,
-  unit_kind,
-  low_value,
-  mid_value,
-  high_value,
-  confidence,
-  source_count,
-  metadata
-)
-values
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'grocery',
-    'base',
-    null,
-    1,
-    0,
-    'monthly_household',
-    3500.00,
-    4200.00,
-    5000.00,
-    'medium',
-    4,
-    jsonb_build_object('description', 'Solo household grocery basket before lifestyle multiplier.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'grocery',
-    'base',
-    null,
-    2,
-    0,
-    'monthly_household',
-    6500.00,
-    7800.00,
-    9200.00,
-    'medium',
-    4,
-    jsonb_build_object('description', 'Two-adult household grocery basket before lifestyle multiplier.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'grocery',
-    'base',
-    null,
-    2,
-    1,
-    'monthly_household',
-    8200.00,
-    9600.00,
-    11200.00,
-    'medium',
-    4,
-    jsonb_build_object('description', 'Family grocery basket before lifestyle multiplier.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'grocery',
-    'base',
-    null,
-    2,
-    2,
-    'monthly_household',
-    9800.00,
-    11600.00,
-    13600.00,
-    'medium',
-    4,
-    jsonb_build_object('description', 'Four-person household grocery basket before lifestyle multiplier.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'utilities',
-    'base',
-    null,
-    1,
-    0,
-    'monthly_household',
-    1400.00,
-    1800.00,
-    2300.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Electricity plus municipal services for a smaller household.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'utilities',
-    'base',
-    null,
-    2,
-    0,
-    'monthly_household',
-    1900.00,
-    2400.00,
-    3000.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Utilities baseline for a couple household.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'utilities',
-    'base',
-    null,
-    2,
-    1,
-    'monthly_household',
-    2300.00,
-    2900.00,
-    3600.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Utilities baseline for a family household.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'basic',
-    'adult',
-    null,
-    null,
-    'monthly_adult',
-    1700.00,
-    2100.00,
-    2500.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-adult rate for basic medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'basic',
-    'child',
-    null,
-    null,
-    'monthly_child',
-    850.00,
-    1050.00,
-    1250.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-child rate for basic medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'mid',
-    'adult',
-    null,
-    null,
-    'monthly_adult',
-    2500.00,
-    3200.00,
-    3900.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-adult rate for mid-tier medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'mid',
-    'child',
-    null,
-    null,
-    'monthly_child',
-    1200.00,
-    1500.00,
-    1900.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-child rate for mid-tier medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'premium',
-    'adult',
-    null,
-    null,
-    'monthly_adult',
-    4200.00,
-    5200.00,
-    6500.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-adult rate for premium medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'medical_aid',
-    'premium',
-    'child',
-    null,
-    null,
-    'monthly_child',
-    2200.00,
-    2800.00,
-    3400.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Per-child rate for premium medical aid.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'fibre',
-    'none',
-    null,
-    null,
-    null,
-    'monthly_household',
-    0.00,
-    0.00,
-    0.00,
-    'high',
-    1,
-    jsonb_build_object('description', 'No fibre selected.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'fibre',
-    'basic',
-    null,
-    null,
-    null,
-    'monthly_household',
-    599.00,
-    699.00,
-    799.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'Entry-level fibre package.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'fibre',
-    'standard',
-    null,
-    null,
-    null,
-    'monthly_household',
-    799.00,
-    999.00,
-    1199.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'Typical family or hybrid-work fibre package.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'fibre',
-    'fast',
-    null,
-    null,
-    null,
-    'monthly_household',
-    1099.00,
-    1299.00,
-    1499.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'High-speed fibre package.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'mobile',
-    'basic',
-    null,
-    null,
-    null,
-    'monthly_adult',
-    199.00,
-    249.00,
-    299.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'Per-adult mobile baseline.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'mobile',
-    'standard',
-    null,
-    null,
-    null,
-    'monthly_adult',
-    399.00,
-    499.00,
-    599.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'Per-adult standard mobile package.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'mobile',
-    'heavy',
-    null,
-    null,
-    null,
-    'monthly_adult',
-    699.00,
-    849.00,
-    999.00,
-    'high',
-    3,
-    jsonb_build_object('description', 'Per-adult heavy data package.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'school',
-    'none',
-    null,
-    null,
-    null,
-    'monthly_child',
-    0.00,
-    0.00,
-    0.00,
-    'high',
-    1,
-    jsonb_build_object('description', 'No schooling cost selected.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'school',
-    'public',
-    null,
-    null,
-    null,
-    'monthly_child',
-    1500.00,
-    2000.00,
-    2500.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Monthlyized public school fee and levy estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'school',
-    'private_mid',
-    null,
-    null,
-    null,
-    'monthly_child',
-    4500.00,
-    6500.00,
-    8500.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Monthlyized mid-market private school estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'school',
-    'private_premium',
-    null,
-    null,
-    null,
-    'monthly_child',
-    10000.00,
-    14000.00,
-    18000.00,
-    'medium',
-    3,
-    jsonb_build_object('description', 'Monthlyized premium private school estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'childcare',
-    'none',
-    null,
-    null,
-    null,
-    'monthly_child',
-    0.00,
-    0.00,
-    0.00,
-    'high',
-    1,
-    jsonb_build_object('description', 'No childcare selected.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'childcare',
-    'part_time',
-    null,
-    null,
-    null,
-    'monthly_child',
-    2500.00,
-    4000.00,
-    5500.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Part-time childcare or aftercare estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'childcare',
-    'full_time',
-    null,
-    null,
-    null,
-    'monthly_child',
-    6000.00,
-    8500.00,
-    11000.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Full-time childcare estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'domestic_help',
-    'none',
-    null,
-    null,
-    null,
-    'monthly_household',
-    0.00,
-    0.00,
-    0.00,
-    'high',
-    1,
-    jsonb_build_object('description', 'No domestic help selected.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'domestic_help',
-    'monthly',
-    null,
-    null,
-    null,
-    'monthly_household',
-    450.00,
-    700.00,
-    900.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Monthly cleaner visit.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'domestic_help',
-    'weekly',
-    null,
-    null,
-    null,
-    'monthly_household',
-    1600.00,
-    2200.00,
-    2800.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Weekly domestic help estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'domestic_help',
-    'twice_weekly',
-    null,
-    null,
-    null,
-    'monthly_household',
-    3200.00,
-    4200.00,
-    5200.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Twice-weekly domestic help estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'domestic_help',
-    'full_time',
-    null,
-    null,
-    null,
-    'monthly_household',
-    6500.00,
-    8000.00,
-    9800.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Full-time domestic help estimate.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'backup_power',
-    'none',
-    null,
-    null,
-    null,
-    'monthly_household',
-    0.00,
-    0.00,
-    0.00,
-    'high',
-    1,
-    jsonb_build_object('description', 'No backup power selected.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'backup_power',
-    'basic',
-    null,
-    null,
-    null,
-    'monthly_household',
-    150.00,
-    300.00,
-    450.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Small monthly backup power allowance.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'backup_power',
-    'inverter',
-    null,
-    null,
-    null,
-    'monthly_household',
-    900.00,
-    1400.00,
-    2000.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Monthlyized inverter setup and upkeep.')
-  ),
-  (
-    '11111111-1111-1111-1111-111111111111',
-    'backup_power',
-    'full',
-    null,
-    null,
-    null,
-    'monthly_household',
-    2200.00,
-    3200.00,
-    4500.00,
-    'medium',
-    2,
-    jsonb_build_object('description', 'Monthlyized larger backup power setup.')
-  );
-
-insert into public.scenario_inputs (
-  id,
-  session_id,
-  email,
-  adults,
-  children,
-  life_stage,
-  employment_setup,
-  lifestyle_tier,
-  housing_mode,
-  bedrooms,
-  parking_spaces,
-  property_type,
-  net_monthly_income,
-  work_destination_area,
-  cars,
-  commute_days_per_week,
-  uses_uber,
-  uber_trips_per_month,
-  uses_public_transport,
-  school_type,
-  childcare,
-  domestic_help,
-  medical_aid_tier,
-  fibre_tier,
-  mobile_tier,
-  backup_power,
-  selected_suburb_ids,
-  housing_override,
-  input_json
-)
-values (
-  '33333333-3333-3333-3333-333333333333',
-  'seed-demo-session',
-  'demo@example.com',
-  2,
-  1,
-  'family',
-  'hybrid',
-  'balanced',
-  'rent',
-  2,
-  1,
-  'apartment',
-  60000.00,
-  'cbd',
-  1,
-  3,
-  true,
-  4,
-  false,
-  'private_mid',
-  'none',
-  'monthly',
-  'mid',
-  'standard',
-  'standard',
-  'inverter',
-  array['22222222-2222-2222-2222-222222222222']::uuid[],
-  null,
-  jsonb_build_object(
-    'source', 'seed',
-    'notes', 'Representative family scenario for testing calculator and results rendering.',
-    'assumptions', jsonb_build_object(
-      'work_destination_area', 'cbd',
-      'commute_days_per_week', 3,
-      'children_in_school', 1
-    )
-  )
-)
-on conflict (id) do update
-set
-  session_id = excluded.session_id,
-  email = excluded.email,
-  adults = excluded.adults,
-  children = excluded.children,
-  life_stage = excluded.life_stage,
-  employment_setup = excluded.employment_setup,
-  lifestyle_tier = excluded.lifestyle_tier,
-  housing_mode = excluded.housing_mode,
-  bedrooms = excluded.bedrooms,
-  parking_spaces = excluded.parking_spaces,
-  property_type = excluded.property_type,
-  net_monthly_income = excluded.net_monthly_income,
-  work_destination_area = excluded.work_destination_area,
-  cars = excluded.cars,
-  commute_days_per_week = excluded.commute_days_per_week,
-  uses_uber = excluded.uses_uber,
-  uber_trips_per_month = excluded.uber_trips_per_month,
-  uses_public_transport = excluded.uses_public_transport,
-  school_type = excluded.school_type,
-  childcare = excluded.childcare,
-  domestic_help = excluded.domestic_help,
-  medical_aid_tier = excluded.medical_aid_tier,
-  fibre_tier = excluded.fibre_tier,
-  mobile_tier = excluded.mobile_tier,
-  backup_power = excluded.backup_power,
-  selected_suburb_ids = excluded.selected_suburb_ids,
-  housing_override = excluded.housing_override,
-  input_json = excluded.input_json;
-
-insert into public.scenario_results (
-  id,
-  scenario_input_id,
-  snapshot_id,
-  primary_suburb_id,
-  formula_version,
-  affordability,
-  monthly_low,
-  monthly_mid,
-  monthly_high,
-  workable_net_salary,
-  comfortable_net_salary,
-  result_json
-)
-values (
-  '44444444-4444-4444-4444-444444444444',
-  '33333333-3333-3333-3333-333333333333',
-  '11111111-1111-1111-1111-111111111111',
-  '22222222-2222-2222-2222-222222222222',
-  'v1.0.0',
-  'workable',
-  48200.00,
-  53600.00,
-  60100.00,
-  57900.00,
-  63200.00,
-  jsonb_build_object(
-    'suburb', 'Claremont',
-    'monthly_cost', jsonb_build_object(
-      'low', 48200,
-      'mid', 53600,
-      'high', 60100
-    ),
-    'categories', jsonb_build_object(
-      'housing', 21000,
-      'transport', 4500,
-      'groceries', 9600,
-      'utilities', 2900,
-      'schooling_childcare', 6500,
-      'healthcare', 7900,
-      'connectivity', 2000,
-      'domestic_help', 700,
-      'backup_power', 1400
-    ),
-    'salary_thresholds', jsonb_build_object(
-      'workable_net_salary', 57900,
-      'comfortable_net_salary', 63200
-    ),
-    'affordability', 'workable',
-    'confidence', jsonb_build_object(
-      'overall', 'medium',
-      'housing', 'high',
-      'transport', 'high',
-      'schooling_childcare', 'medium',
-      'medical_aid', 'medium'
-    ),
-    'drivers', jsonb_build_array(
-      'Housing is the largest cost driver in Claremont.',
-      'Private mid-market schooling materially raises the family budget.',
-      'A hybrid commute to the CBD keeps transport below outer-suburb levels.'
-    )
-  )
-)
-on conflict (id) do update
-set
-  scenario_input_id = excluded.scenario_input_id,
-  snapshot_id = excluded.snapshot_id,
-  primary_suburb_id = excluded.primary_suburb_id,
-  formula_version = excluded.formula_version,
-  affordability = excluded.affordability,
-  monthly_low = excluded.monthly_low,
-  monthly_mid = excluded.monthly_mid,
-  monthly_high = excluded.monthly_high,
-  workable_net_salary = excluded.workable_net_salary,
-  comfortable_net_salary = excluded.comfortable_net_salary,
-  result_json = excluded.result_json;
-
-insert into public.seo_page_snapshots (
-  id,
-  snapshot_id,
-  page_type,
-  slug,
-  entity_keys,
-  summary_json,
-  uniqueness_score,
-  published_at,
-  is_indexable
-)
-values (
-  '55555555-5555-5555-5555-555555555555',
-  '11111111-1111-1111-1111-111111111111',
-  'suburb',
-  'cape-town/claremont-cost-of-living',
-  jsonb_build_object(
-    'suburb_id', '22222222-2222-2222-2222-222222222222',
-    'audience', null
-  ),
-  jsonb_build_object(
-    'title', 'Claremont Cost of Living',
-    'snapshot_date', '2026-03-16',
-    'summary_band', jsonb_build_object(
-      'solo_balanced', jsonb_build_object('low', 24000, 'mid', 28600, 'high', 33200),
-      'family_balanced', jsonb_build_object('low', 48200, 'mid', 53600, 'high', 60100)
-    ),
-    'top_drivers', jsonb_build_array(
-      'Rent is the primary cost driver in Claremont.',
-      'School choice causes the largest family-budget swing.',
-      'CBD commute costs are manageable for hybrid workers.'
-    ),
-    'faq', jsonb_build_array(
-      jsonb_build_object(
-        'question', 'Is Claremont affordable for a family?',
-        'answer', 'Claremont is workable for a mid-income family when rent is controlled and school choices are planned carefully.'
-      ),
-      jsonb_build_object(
-        'question', 'What is the biggest cost pressure in Claremont?',
-        'answer', 'Housing is typically the largest recurring cost, followed by schooling for family households.'
-      )
-    )
-  ),
-  0.9400,
-  timezone('utc', now()),
-  true
-)
-on conflict (id) do update
-set
-  snapshot_id = excluded.snapshot_id,
-  page_type = excluded.page_type,
-  slug = excluded.slug,
-  entity_keys = excluded.entity_keys,
-  summary_json = excluded.summary_json,
-  uniqueness_score = excluded.uniqueness_score,
-  published_at = excluded.published_at,
-  is_indexable = excluded.is_indexable;
-
-commit;

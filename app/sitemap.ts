@@ -8,10 +8,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: `${siteUrl}/cost-of-living/cape-town`,
+      url: `${siteUrl}/affordable-schools/midrand`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${siteUrl}/affordable-primary-schools/midrand`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
   ];
 }

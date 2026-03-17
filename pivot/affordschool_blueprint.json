@@ -1,0 +1,759 @@
+{
+  "project": {
+    "name": "AffordSchool",
+    "working_title": "Affordable Schools Finder",
+    "purpose": "Parent-first school matching platform for affordable primary schools in middle-class South African suburbs using simulated data for development and testing.",
+    "status": "blueprint_v1",
+    "data_policy": {
+      "mode": "simulated_only",
+      "note": "All entities, fee values, ratings, distances, and reviews are generated for build and test purposes only. No production or live school data should be implied in the MVP."
+    }
+  },
+  "product_strategy": {
+    "core_positioning": "Find primary schools near you that fit your budget, commute, and priorities.",
+    "target_user": {
+      "persona": "Middle-class parent or guardian searching for affordable primary schools",
+      "geography": "Middle-class suburbs in South Africa",
+      "example_suburbs": [
+        "Noordwyk",
+        "Halfway Gardens",
+        "Vorna Valley",
+        "Buccleuch",
+        "Randburg clusters"
+      ],
+      "excluded_focus": [
+        "Prestige-first upmarket suburb positioning",
+        "Feeder/catchment-zone logic in MVP"
+      ]
+    },
+    "value_props": [
+      "Budget-fit school matches instead of generic directories",
+      "Shortlists based on budget, commute, and parent preferences",
+      "Affordability-first discovery for middle-class suburbs",
+      "Side-by-side comparison of fees, distance, and features",
+      "Parent-first matching rather than prestige-first browsing",
+      "Saved shortlists, notes, and family decision support"
+    ],
+    "jobs_to_be_done": [
+      "Help me find schools I can actually afford near where I live or work",
+      "Help me compare a few realistic options quickly",
+      "Help me understand tradeoffs like price vs commute vs activities",
+      "Help me save, share, and revisit my shortlist"
+    ]
+  },
+  "mvp_scope": {
+    "in_scope": [
+      "Primary schools only",
+      "Parent onboarding wizard",
+      "Budget + distance + preferences matching",
+      "Searchable school cards and comparison pages",
+      "School detail pages",
+      "Saved shortlist",
+      "Notes per school",
+      "Share shortlist link",
+      "Simulated reviews and structured review dimensions",
+      "SEO landing pages for suburb + budget/use-case"
+    ],
+    "out_of_scope": [
+      "Real payment processing",
+      "Real admissions submission",
+      "Feeder/catchment calculations",
+      "Live maps APIs in first prototype if not needed",
+      "Verified reviews system",
+      "School owner dashboards",
+      "Native mobile app",
+      "Production-grade analytics warehouse"
+    ]
+  },
+  "user_experience": {
+    "design_principles": [
+      "Parent-first, not school-first",
+      "Ask for constraints before showing listings",
+      "Explain tradeoffs clearly",
+      "Bias toward clarity over feature density",
+      "Use confidence and verification labels on every uncertain data point",
+      "Minimize decision fatigue"
+    ],
+    "primary_flow": [
+      {
+        "step": 1,
+        "screen": "landing_page",
+        "goal": "Explain value proposition and start wizard",
+        "cta": "Find schools that fit your budget"
+      },
+      {
+        "step": 2,
+        "screen": "onboarding_wizard",
+        "goal": "Collect parent constraints",
+        "inputs": [
+          "child_grade",
+          "monthly_budget_or_annual_budget",
+          "home_suburb",
+          "optional_work_suburb",
+          "max_commute_minutes_or_km",
+          "must_have_features",
+          "nice_to_have_features",
+          "school_type_preference"
+        ]
+      },
+      {
+        "step": 3,
+        "screen": "results_page",
+        "goal": "Show ranked shortlist",
+        "outputs": [
+          "fit_score",
+          "estimated_monthly_cost",
+          "distance",
+          "top_matching_features",
+          "tradeoff_warning",
+          "save_button",
+          "compare_checkbox"
+        ]
+      },
+      {
+        "step": 4,
+        "screen": "comparison_table",
+        "goal": "Help parent compare shortlisted options side by side"
+      },
+      {
+        "step": 5,
+        "screen": "school_detail_page",
+        "goal": "Answer all key questions about a chosen school"
+      },
+      {
+        "step": 6,
+        "screen": "saved_shortlist",
+        "goal": "Support return visits and household decision-making"
+      }
+    ],
+    "wizard_questions": [
+      {
+        "id": "child_grade",
+        "type": "single_select",
+        "label": "What grade is your child entering?",
+        "options": [
+          "Grade R",
+          "Grade 1",
+          "Grade 2",
+          "Grade 3",
+          "Grade 4",
+          "Grade 5",
+          "Grade 6",
+          "Grade 7"
+        ]
+      },
+      {
+        "id": "budget_type",
+        "type": "single_select",
+        "label": "How do you think about school budget?",
+        "options": [
+          "Monthly",
+          "Annual"
+        ]
+      },
+      {
+        "id": "budget_value",
+        "type": "range",
+        "label": "What is your school fee budget?",
+        "validation": {
+          "min": 1000,
+          "max": 250000,
+          "currency": "ZAR"
+        }
+      },
+      {
+        "id": "home_suburb",
+        "type": "autocomplete",
+        "label": "Where do you live?"
+      },
+      {
+        "id": "work_suburb",
+        "type": "autocomplete_optional",
+        "label": "Where do you work?"
+      },
+      {
+        "id": "max_commute",
+        "type": "single_select",
+        "label": "How far are you willing to travel?",
+        "options": [
+          "Under 3 km",
+          "Under 5 km",
+          "Under 8 km",
+          "Under 12 km",
+          "Best options within 20 min"
+        ]
+      },
+      {
+        "id": "must_have_features",
+        "type": "multi_select",
+        "label": "What must the school have?",
+        "options": [
+          "Aftercare",
+          "Transport",
+          "Swimming",
+          "Soccer",
+          "Rugby",
+          "Cricket",
+          "Netball",
+          "Music",
+          "Coding/Robotics",
+          "Religious alignment",
+          "Small classes"
+        ]
+      },
+      {
+        "id": "nice_to_have_features",
+        "type": "multi_select",
+        "label": "Anything nice to have?",
+        "options": [
+          "Library",
+          "Extra murals",
+          "Modern classrooms",
+          "Meal option",
+          "Holiday care",
+          "Sibling discount"
+        ]
+      },
+      {
+        "id": "school_type",
+        "type": "single_select",
+        "label": "What type of school are you open to?",
+        "options": [
+          "Private only",
+          "Public only",
+          "Both"
+        ]
+      }
+    ]
+  },
+  "ranking_and_matching": {
+    "overview": "Every school gets a parent-specific fit score from 0 to 100.",
+    "formula": {
+      "fit_score": "budget_fit*0.35 + distance_fit*0.25 + must_have_fit*0.20 + nice_to_have_fit*0.08 + school_type_fit*0.05 + rating_fit*0.07"
+    },
+    "components": {
+      "budget_fit": {
+        "logic": [
+          "100 if estimated annual cost <= parent budget",
+          "70 if within 10 percent above budget",
+          "40 if within 25 percent above budget",
+          "0 if more than 25 percent above budget"
+        ]
+      },
+      "distance_fit": {
+        "logic": [
+          "100 if within preferred commute threshold",
+          "Score decays linearly as distance exceeds threshold"
+        ]
+      },
+      "must_have_fit": {
+        "logic": "Required features missing trigger major penalties"
+      },
+      "nice_to_have_fit": {
+        "logic": "Soft preference bonus"
+      },
+      "school_type_fit": {
+        "logic": "Bonus when the school's type matches the user's selected openness"
+      },
+      "rating_fit": {
+        "logic": "Use simulated parent review score only as a small weight"
+      }
+    },
+    "tradeoff_labels": [
+      "Best budget fit",
+      "Closest match",
+      "Best sports match",
+      "Best all-round value",
+      "Above budget but strong feature fit",
+      "Affordable but fewer extras"
+    ]
+  },
+  "page_architecture": {
+    "core_routes": [
+      {
+        "route": "/",
+        "type": "landing"
+      },
+      {
+        "route": "/match",
+        "type": "wizard"
+      },
+      {
+        "route": "/results",
+        "type": "dynamic_results"
+      },
+      {
+        "route": "/compare",
+        "type": "comparison"
+      },
+      {
+        "route": "/schools/[slug]",
+        "type": "school_detail"
+      },
+      {
+        "route": "/shortlist",
+        "type": "saved_shortlist"
+      },
+      {
+        "route": "/suburbs/[suburb]",
+        "type": "suburb_hub"
+      },
+      {
+        "route": "/suburbs/[suburb]/affordable-primary-schools",
+        "type": "seo_landing"
+      },
+      {
+        "route": "/suburbs/[suburb]/schools-under-[budget-band]",
+        "type": "seo_landing"
+      },
+      {
+        "route": "/suburbs/[suburb]/schools-with-[feature]",
+        "type": "seo_landing"
+      },
+      {
+        "route": "/schools/[slug]/reviews",
+        "type": "review_subpage"
+      }
+    ],
+    "seo_templates": [
+      "Affordable primary schools in [suburb]",
+      "Primary schools in [suburb] under [budget_band]",
+      "Schools with aftercare in [suburb]",
+      "Schools with swimming in [suburb]",
+      "Affordable private schools near [suburb]",
+      "Compare primary schools in [suburb]",
+      "[School Name] fees and reviews"
+    ],
+    "indexing_policy": {
+      "index": [
+        "suburb hubs with enough school density",
+        "budget-band pages with meaningful results",
+        "feature pages with at least 5 relevant schools",
+        "school detail pages"
+      ],
+      "noindex": [
+        "empty result states",
+        "thin combinations with too few schools",
+        "internal result URLs with arbitrary query spam"
+      ]
+    }
+  },
+  "school_page_spec": {
+    "top_modules": [
+      "Hero with school name, suburb, fit tags, and budget badge",
+      "Fee summary",
+      "Quick facts",
+      "Why this may suit your family",
+      "Key tradeoffs",
+      "Reviews snapshot",
+      "Facilities and activities",
+      "Admissions checklist",
+      "Similar schools nearby"
+    ],
+    "fields": [
+      "name",
+      "slug",
+      "school_type",
+      "suburb",
+      "city",
+      "province",
+      "grades_offered",
+      "annual_fee_min",
+      "annual_fee_max",
+      "monthly_estimate",
+      "registration_fee",
+      "deposit",
+      "aftercare_available",
+      "transport_available",
+      "sports",
+      "facilities",
+      "curriculum",
+      "religious_affiliation",
+      "class_size_estimate",
+      "distance_from_suburb_center_km",
+      "review_score",
+      "review_count",
+      "data_confidence",
+      "last_updated_at"
+    ]
+  },
+  "comparison_experience": {
+    "max_compare": 4,
+    "columns": [
+      "School",
+      "Annual fee",
+      "Monthly estimate",
+      "Distance",
+      "Aftercare",
+      "Transport",
+      "Swimming",
+      "Sports",
+      "Rating",
+      "Best for",
+      "Tradeoff"
+    ],
+    "features": [
+      "sticky compare bar",
+      "highlight cheapest",
+      "highlight closest",
+      "highlight best feature match",
+      "toggle show only differences",
+      "export as printable comparison"
+    ]
+  },
+  "review_system": {
+    "mode": "simulated_in_mvp",
+    "public_labels": [
+      "Simulated review data for demo",
+      "Demo data",
+      "Not real parent submissions"
+    ],
+    "review_dimensions": [
+      "Overall satisfaction",
+      "Value for money",
+      "Communication",
+      "Facilities",
+      "Sports and activities",
+      "Aftercare quality",
+      "Safety and cleanliness",
+      "Child happiness"
+    ],
+    "review_fields": [
+      "school_id",
+      "reviewer_alias",
+      "overall_score",
+      "dimension_scores",
+      "headline",
+      "body",
+      "grade_relevant_to_review",
+      "pros",
+      "cons",
+      "created_at",
+      "is_simulated"
+    ]
+  },
+  "data_model": {
+    "entities": {
+      "Suburb": {
+        "fields": [
+          "id",
+          "name",
+          "city",
+          "province",
+          "slug",
+          "median_budget_band",
+          "is_target_suburb"
+        ]
+      },
+      "School": {
+        "fields": [
+          "id",
+          "name",
+          "slug",
+          "suburb_id",
+          "school_type",
+          "grades_from",
+          "grades_to",
+          "annual_fee_min",
+          "annual_fee_max",
+          "monthly_fee_estimate",
+          "registration_fee",
+          "deposit_fee",
+          "aftercare_available",
+          "transport_available",
+          "swimming_available",
+          "sports",
+          "facilities",
+          "curriculum",
+          "religious_affiliation",
+          "rating_average",
+          "rating_count",
+          "latitude",
+          "longitude",
+          "confidence_level",
+          "is_simulated",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "Review": {
+        "fields": [
+          "id",
+          "school_id",
+          "reviewer_alias",
+          "overall_score",
+          "body",
+          "dimension_scores_json",
+          "is_simulated",
+          "created_at"
+        ]
+      },
+      "UserPreferenceSession": {
+        "fields": [
+          "id",
+          "budget_type",
+          "budget_value",
+          "child_grade",
+          "home_suburb",
+          "work_suburb",
+          "max_commute",
+          "must_haves_json",
+          "nice_to_haves_json",
+          "school_type",
+          "created_at"
+        ]
+      },
+      "Shortlist": {
+        "fields": [
+          "id",
+          "session_id",
+          "share_token",
+          "created_at"
+        ]
+      },
+      "ShortlistItem": {
+        "fields": [
+          "id",
+          "shortlist_id",
+          "school_id",
+          "notes",
+          "rank_position",
+          "created_at"
+        ]
+      }
+    }
+  },
+  "simulated_data_strategy": {
+    "requirements": [
+      "Generate at least 10 target suburbs",
+      "Generate 15 to 30 schools per suburb",
+      "Ensure realistic fee dispersion across public, low-fee private, and premium outliers",
+      "Generate distances from suburb centers",
+      "Generate activities and facilities with weighted probabilities",
+      "Generate 3 to 20 simulated reviews per school",
+      "Mark every simulated record explicitly"
+    ],
+    "distribution_rules": {
+      "school_types": {
+        "public": 0.35,
+        "private_low_fee": 0.35,
+        "private_mid_tier": 0.2,
+        "private_premium": 0.1
+      },
+      "fee_bands_zar_annual": {
+        "public": [
+          12000,
+          30000
+        ],
+        "private_low_fee": [
+          25000,
+          70000
+        ],
+        "private_mid_tier": [
+          70000,
+          140000
+        ],
+        "private_premium": [
+          140000,
+          220000
+        ]
+      }
+    }
+  },
+  "frontend_spec": {
+    "stack": {
+      "framework": "Next.js App Router",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS",
+      "ui": "shadcn/ui or equivalent",
+      "forms": "React Hook Form + Zod",
+      "state": "URL state + server components + minimal client state",
+      "database": "PostgreSQL",
+      "orm": "Prisma",
+      "auth": "Optional in MVP; anonymous sessions preferred",
+      "hosting": "Vercel or equivalent"
+    },
+    "core_components": [
+      "HeroSection",
+      "WizardStepper",
+      "BudgetRangeInput",
+      "SuburbAutocomplete",
+      "FeatureMultiSelect",
+      "SchoolCard",
+      "FitScoreBadge",
+      "TradeoffCallout",
+      "ComparisonTable",
+      "ReviewDistribution",
+      "ShortlistDrawer",
+      "ShareShortlistDialog",
+      "DataConfidenceBadge"
+    ],
+    "responsive_rules": [
+      "Mobile-first layout",
+      "Wizard optimized for thumb usage",
+      "Sticky bottom CTA on mobile",
+      "Comparison table collapses into card stack on small screens",
+      "School card actions remain visible without hover"
+    ]
+  },
+  "backend_spec": {
+    "api_routes": [
+      {
+        "route": "/api/match",
+        "method": "POST",
+        "purpose": "Return ranked school matches"
+      },
+      {
+        "route": "/api/compare",
+        "method": "POST",
+        "purpose": "Return normalized compare payload for selected schools"
+      },
+      {
+        "route": "/api/shortlist",
+        "method": "POST",
+        "purpose": "Create shortlist"
+      },
+      {
+        "route": "/api/shortlist/[token]",
+        "method": "GET",
+        "purpose": "Fetch shortlist by share token"
+      },
+      {
+        "route": "/api/schools/[slug]",
+        "method": "GET",
+        "purpose": "Fetch school details"
+      },
+      {
+        "route": "/api/suburbs/[slug]",
+        "method": "GET",
+        "purpose": "Fetch suburb page data"
+      }
+    ],
+    "services": [
+      "matchEngine",
+      "distanceEstimator",
+      "seoPageBuilder",
+      "reviewAggregator",
+      "simulatedDataSeeder"
+    ]
+  },
+  "algorithms": {
+    "distance_estimation": "Use seeded suburb coordinates and haversine distance for demo mode.",
+    "budget_normalization": "Convert monthly inputs to annual and compare consistently.",
+    "feature_matching": "Binary must-have match with penalties; nice-to-have additive bonuses.",
+    "result_sorting": [
+      "fit_score desc",
+      "annual_fee_min asc",
+      "distance asc",
+      "rating_average desc"
+    ]
+  },
+  "content_and_copy": {
+    "tone": "Clear, reassuring, parent-friendly, practical",
+    "ui_copy_examples": {
+      "hero_title": "Find primary schools that fit your budget",
+      "hero_subtitle": "Compare nearby schools by affordability, commute, and what matters most to your family.",
+      "results_title": "Here are schools that fit your family best",
+      "compare_cta": "Compare selected schools",
+      "save_cta": "Save to shortlist"
+    },
+    "compliance_copy": [
+      "All data on this demo is simulated for design and testing.",
+      "Fees, reviews, and features shown here are not live school data.",
+      "Do not use this prototype to make real-world school decisions."
+    ]
+  },
+  "analytics": {
+    "events": [
+      "wizard_started",
+      "wizard_completed",
+      "results_viewed",
+      "school_card_clicked",
+      "compare_started",
+      "school_saved",
+      "shortlist_shared",
+      "school_page_viewed",
+      "review_section_expanded"
+    ],
+    "north_star": "completed_shortlists_per_week",
+    "secondary_metrics": [
+      "wizard completion rate",
+      "compare usage rate",
+      "school detail click-through rate",
+      "saved shortlist rate",
+      "return visit rate"
+    ]
+  },
+  "quality_bar": {
+    "must_have": [
+      "No broken routes",
+      "All simulated data clearly labeled",
+      "Ranking outputs deterministic for same input",
+      "Accessible forms and keyboard navigation",
+      "Fast initial load on mobile",
+      "No empty SEO pages indexed"
+    ],
+    "nice_to_have": [
+      "Printable compare view",
+      "Map snapshot on school pages",
+      "Explain my match tooltip",
+      "Sibling-cost estimator in phase 2"
+    ]
+  },
+  "delivery_plan": {
+    "phase_1": {
+      "name": "Foundation",
+      "tasks": [
+        "Set up Next.js, Tailwind, Prisma, PostgreSQL",
+        "Implement seeded simulated data generator",
+        "Create suburb and school schemas",
+        "Build landing page and wizard"
+      ]
+    },
+    "phase_2": {
+      "name": "Matching MVP",
+      "tasks": [
+        "Implement match engine",
+        "Build results cards and compare flow",
+        "Build school detail page",
+        "Add saved shortlist and share tokens"
+      ]
+    },
+    "phase_3": {
+      "name": "SEO and content layer",
+      "tasks": [
+        "Generate suburb landing pages",
+        "Generate budget-band pages",
+        "Generate school detail metadata",
+        "Set noindex rules for weak combinations"
+      ]
+    },
+    "phase_4": {
+      "name": "Polish",
+      "tasks": [
+        "Add analytics",
+        "Improve copy and trust labels",
+        "Tune scoring weights",
+        "Add notes and comparison export"
+      ]
+    }
+  },
+  "swe_handoff": {
+    "first_tasks": [
+      "Create Prisma schema from the entities section",
+      "Create deterministic seed script for suburbs, schools, and reviews",
+      "Implement /match wizard and POST /api/match route",
+      "Build results page with SchoolCard and FitScoreBadge",
+      "Build /schools/[slug] page using seeded data",
+      "Build /compare and /shortlist flows",
+      "Implement suburb SEO templates with mock data"
+    ],
+    "done_definition": [
+      "A parent can complete the wizard and get ranked simulated school results",
+      "A parent can compare up to 4 schools",
+      "A parent can open a school page and see fees, features, and reviews",
+      "A parent can save and share a shortlist",
+      "All pages clearly display demo-data labels"
+    ]
+  }
+}

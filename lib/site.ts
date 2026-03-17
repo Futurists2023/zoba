@@ -5,13 +5,7 @@ export function getSiteUrl() {
     const normalizedUrl = siteUrl.replace(/\/+$/, "");
 
     try {
-      const url = new URL(normalizedUrl);
-
-      if (url.hostname === "zoba.co.za") {
-        url.hostname = "www.zoba.co.za";
-      }
-
-      return url.toString().replace(/\/+$/, "");
+      return new URL(normalizedUrl).toString().replace(/\/+$/, "");
     } catch {
       return normalizedUrl;
     }
